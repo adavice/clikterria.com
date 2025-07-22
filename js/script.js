@@ -18,3 +18,21 @@ function closeSidebar() {
 openSidebarButton.addEventListener('click', openSidebar);
 closeSidebarButton.addEventListener('click', closeSidebar);
 sidebarOverlay.addEventListener('click', closeSidebar);
+
+document.querySelectorAll('.toggle-section').forEach(section => {
+    const block = section.querySelector('.toggle-block');
+    const chevron = section.querySelector('.toggle-chevron');
+    const content = section.querySelector('.collapsible-content');
+
+    block.addEventListener('click', () => {
+        const isOpen = !content.classList.contains('hidden');
+
+        content.classList.toggle('hidden');
+
+        if (isOpen) {
+            chevron.classList.remove('rotate-[360deg]');
+        } else {
+            chevron.classList.add('rotate-[360deg]');
+        }
+    });
+});

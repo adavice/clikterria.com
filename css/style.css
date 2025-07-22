@@ -44,3 +44,19 @@ a {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.mainTable{
+  margin-bottom: 30px;
+  display: block;
+}
+
+.mainTable td {
+  padding: 5px;
+  border: 1px solid #4f46e5;
+  color: #374151;
+}
+
+ul li.list-style{
+  list-style: disc;
+  margin-left: 20px;
+}
