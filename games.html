@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Games</title>
@@ -66,7 +66,7 @@
               <span class="text-xl font-bold gradient-text">Clikterria</span>
             </div></a
           >
-          <button id="closeSidebar" class="text-gray-500 hover:text-gray-700">
+          <a id="closeSidebar" class="text-gray-500 hover:text-gray-700">
             <svg
               class="w-6 h-6"
               fill="none"
@@ -80,7 +80,7 @@
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
+          </a>
         </div>
 
         <nav>
@@ -205,7 +205,7 @@
           <div class="mt-6 pt-4 border-t border-white/20">
             <div class="mb-6">
               <a
-                href="contact.html"
+                href="contactus.html"
                 class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
               >
                 <svg
@@ -330,7 +330,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-4">
-            <button
+            <a
               id="openSidebar"
               class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 hover:bg-white/20 transition-all duration-300"
             >
@@ -348,8 +348,7 @@
               >
                 <line x1="4" x2="20" y1="12" y2="12"></line>
                 <line x1="4" x2="20" y1="6" y2="6"></line>
-                <line x1="4" x2="20" y1="18" y2="18"></line>
-              </svg></button
+                <line x1="4" x2="20" y1="18" y2="18"></line></svg></a
             ><a href="index.html"
               ><div class="flex items-center gap-2 group">
                 <div class="w-8 h-8 relative flex items-center justify-center">
@@ -392,7 +391,10 @@
             >
           </div>
           <div class="flex items-center gap-4">
-            <button
+            <!-- Language Switcher Button -->
+
+            <a
+              href="contactus.html"
               class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
             >
               <svg
@@ -409,8 +411,10 @@
               >
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
-              ><span class="hidden sm:inline">Contact Us</span></button
-            ><button
+              ><span class="hidden sm:inline">Contact Us</span></a
+            >
+            <a
+              href="cancel.html"
               class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
             >
               <svg
@@ -428,19 +432,69 @@
                 <rect width="20" height="14" x="2" y="5" rx="2"></rect>
                 <line x1="2" x2="22" y1="10" y2="10"></line></svg
               ><span class="hidden sm:inline">Cancel Subscription</span>
-            </button>
+            </a>
+
             <div
               class="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
             >
-              <button
+              <a
+                href="login.html"
                 class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 px-4 py-2 hover:bg-white/20 transition-all duration-300"
               >
-                Login</button
-              ><button
+                Login</a
+              >
+              <a
+                href="signup.html"
                 class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 luxury-shadow"
               >
                 Sign Up
-              </button>
+              </a>
+            </div>
+
+            <div class="relative inline-block text-left group">
+              <a
+                class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                🌐 <span class="ml-2">EN</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >EN</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >ES</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >FR</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >DE</a
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -448,21 +502,11 @@
     </header>
 
     <main class="pt-16 min-h-screen">
-      <div
-        class="min-h-screen bg-gray-50"
-      >
-        <div
-          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
-        >
-          <section
-            class="mb-8"
-          >
-            <div
-              class="max-w-xl mx-auto"
-            >
-              <div
-                class="relative"
-              >
+      <div class="min-h-screen bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <section class="mb-8 hidden">
+            <div class="max-w-xl mx-auto">
+              <div class="relative">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -486,13 +530,12 @@
               </div>
             </div>
           </section>
-          <section
-            class="mb-8"
-          >
+          <section class="mb-8">
             <div
               class="flex space-x-4 overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide"
             >
-              <button
+              <a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-indigo-600"
               >
                 <div
@@ -519,11 +562,10 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >All</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center">All</span>
+              </a>
+              <a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -546,11 +588,12 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >FamJam Fun</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Family Time</span
+                >
+              </a>
+              <a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -583,11 +626,12 @@
                     <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >BrainTwisters</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Brain Games</span
+                >
+              </a>
+              <a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -610,11 +654,12 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Smash &amp; Dash</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Action Zone</span
+                >
+              </a>
+              <a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -641,11 +686,11 @@
                     <path d="M5 18H3"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
+                <span class="text-xs font-semibold text-center"
                   >Brainrot</span
-                ></button
-              ><button
+                ></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -668,11 +713,11 @@
                     <circle cx="12" cy="12" r="2"></circle>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Goal Getters</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Game On</span
+                ></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -702,11 +747,11 @@
                     <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Strategy</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Strategy Lab</span
+                ></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -731,11 +776,11 @@
                     <path d="M9 3.236v15"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Quest Quest</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Adventure Quest
+                </span></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -758,11 +803,11 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Smarty Pants Lab</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Smart Play
+                </span></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -796,11 +841,12 @@
                     <path d="M8 16h.01"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Dice &amp; Dominos</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Tabletop Classics
+                </span></a
+              ><a
+                href="#"
+                n
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -829,11 +875,11 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Triple Trouble</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Match Madness
+                </span></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -855,11 +901,11 @@
                     <path d="M12 19V5"></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Jump Squad</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Jump & Run
+                </span></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -889,11 +935,11 @@
                     ></path>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Squad Goals</span
-                ></button
-              ><button
+                <span class="text-xs font-semibold text-center"
+                  >Multiplayer Arena
+                </span></a
+              ><a
+                href="#"
                 class="flex-shrink-0 flex flex-col items-center gap-2 w-20 transition-transform hover:scale-105 text-gray-500 hover:text-gray-800"
               >
                 <div
@@ -918,23 +964,21 @@
                     <circle cx="18" cy="5" r="3"></circle>
                   </svg>
                 </div>
-                <span
-                  class="text-xs font-semibold"
-                  >Mind Maze</span
-                >
-              </button>
+                <span class="text-xs font-semibold text-center"
+                  >Memory Challenge
+                </span>
+              </a>
             </div>
           </section>
-          <section
-          >
+          <section>
             <div
               class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4"
             >
               <a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/b4a0833217c37a445472856f7e02506e.png"
+                  src="img/128x128.jpg"
                   alt="Family Quiz Night"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
@@ -966,18 +1010,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Family Quiz Night
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/da1a7c0f-01a2-4148-a006-254425553b31.png"
-                  alt="Logic Labyrinth"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1008,18 +1049,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Logic Labyrinth
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/5e8bd82e-3a45-4228-a400-50d4d1e9f168.png"
-                  alt="Neon Rush"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1050,18 +1088,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Neon Rush
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/b661a06e-55c3-4417-b76c-d2279a0b2585.png"
-                  alt="Meme Master"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1092,18 +1127,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Meme Master
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/869502b4-68f7-43d9-93e1-399a913165b6.png"
-                  alt="Championship Soccer"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1134,18 +1166,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Championship Soccer
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/1e3b64c6-2917-4860-9032-482a5c9e4256.png"
-                  alt="Empire Builder"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1176,18 +1205,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Empire Builder
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/03159045-3dd4-4c55-8b38-6f68c34091a1.png"
-                  alt="Dragon's Treasure"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1218,18 +1244,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Dragon's Treasure
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/96b866b1-a99f-442a-a99f-a633df1972a9.png"
-                  alt="Science Simulator"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1260,18 +1283,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Science Simulator
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/f54d76b1-59dd-4835-8178-c0b395d36e78.png"
-                  alt="Board Game Bonanza"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1302,18 +1322,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Board Game Bonanza
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/3e9a4a75-dd46-45fb-a58f-2a31613b5a79.png"
-                  alt="Triple Tile"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1344,18 +1361,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Triple Tile
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/67a73132-02c3-4f33-8b54-7117f35b2e32.png"
-                  alt="Parkour Pro"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1386,18 +1400,15 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Parkour Pro
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               ><a
                 href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/9b5b290b-1994-4752-9443-41a4a4282c16.png"
-                  alt="Team Tactics"
+                  src="img/128x128.jpg"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div
@@ -1428,55 +1439,287 @@
                 <div
                   class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
                 >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Team Tactics
-                  </h3>
-                </div></a
-              ><a
-                href="#"
-                class="group relative block aspect-[4/5] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                ><img
-                  src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/8c8e185e-d227-4481-9bd2-a131bba39f1c.png"
-                  alt="Maze Runner"
-                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                ></div>
-                <div
-                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <div
-                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-play w-6 h-6 text-white ml-1"
-                    >
-                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-                >
-                  <h3
-                    class="text-white font-bold text-sm truncate"
-                  >
-                    Maze Runner
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
                   </h3>
                 </div></a
               >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+              <a
+                href="#"
+                class="group relative block aspect-[4/4] overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                ><img
+                  src="img/128x128.jpg"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+                <div
+                  class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-play w-6 h-6 text-white ml-1"
+                    >
+                      <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                >
+                  <h3 class="text-white font-bold text-sm truncate">
+                    Game Name
+                  </h3>
+                </div></a
+              >
+            </div>
+            <div
+              class="flex justify-center mt-6 game_list"
+              aria-label="Game_list"
+            >
+              <nav class="inline-flex space-x-2 pagination">
+                <a
+                  href="#"
+                  class="px-4 py-2 text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 rounded hover:bg-blue-700 active"
+                  >1</a
+                >
+
+                <a
+                  href="#"
+                  class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                  >2</a
+                >
+
+                <a
+                  href="#"
+                  class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                  >3</a
+                >
+
+                <a
+                  href="#"
+                  class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                  >4</a
+                >
+
+                <a
+                  href="#"
+                  class="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                  >5</a
+                >
+              </nav>
             </div>
           </section>
         </div>
@@ -1551,7 +1794,7 @@
               </li>
               <li>
                 <a
-                  href="contact.html"
+                  href="contactus.html"
                   class="text-gray-300 hover:text-white transition-colors"
                   >Contact Support</a
                 >

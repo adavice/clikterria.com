@@ -44,8 +44,9 @@
                   <path
                     d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
                   ></path>
-                  <path d="M2 12h20"></path></svg
-                ><svg
+                  <path d="M2 12h20"></path>
+                </svg>
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -65,7 +66,7 @@
               <span class="text-xl font-bold gradient-text">Clikterria</span>
             </div></a
           >
-          <button id="closeSidebar" class="text-gray-500 hover:text-gray-700">
+          <a id="closeSidebar" class="text-gray-500 hover:text-gray-700">
             <svg
               class="w-6 h-6"
               fill="none"
@@ -79,7 +80,7 @@
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </button>
+          </a>
         </div>
 
         <nav>
@@ -204,7 +205,7 @@
           <div class="mt-6 pt-4 border-t border-white/20">
             <div class="mb-6">
               <a
-                href="contact.html"
+                href="contactus.html"
                 class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
               >
                 <svg
@@ -329,7 +330,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center gap-4">
-            <button
+            <a
               id="openSidebar"
               class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 hover:bg-white/20 transition-all duration-300"
             >
@@ -347,8 +348,7 @@
               >
                 <line x1="4" x2="20" y1="12" y2="12"></line>
                 <line x1="4" x2="20" y1="6" y2="6"></line>
-                <line x1="4" x2="20" y1="18" y2="18"></line>
-              </svg></button
+                <line x1="4" x2="20" y1="18" y2="18"></line></svg></a
             ><a href="index.html"
               ><div class="flex items-center gap-2 group">
                 <div class="w-8 h-8 relative flex items-center justify-center">
@@ -391,7 +391,10 @@
             >
           </div>
           <div class="flex items-center gap-4">
-            <button
+            <!-- Language Switcher Button -->
+
+            <a
+              href="contactus.html"
               class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
             >
               <svg
@@ -408,8 +411,10 @@
               >
                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
-              ><span class="hidden sm:inline">Contact Us</span></button
-            ><button
+              ><span class="hidden sm:inline">Contact Us</span></a
+            >
+            <a
+              href="cancel.html"
               class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
             >
               <svg
@@ -427,25 +432,74 @@
                 <rect width="20" height="14" x="2" y="5" rx="2"></rect>
                 <line x1="2" x2="22" y1="10" y2="10"></line></svg
               ><span class="hidden sm:inline">Cancel Subscription</span>
-            </button>
+            </a>
+
             <div
               class="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
             >
-              <button
+              <a
+                href="login.html"
                 class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 px-4 py-2 hover:bg-white/20 transition-all duration-300"
               >
-                Login</button
-              ><button
+                Login</a
+              >
+              <a
+                href="signup.html"
                 class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 luxury-shadow"
               >
                 Sign Up
-              </button>
+              </a>
+            </div>
+
+            <div class="relative inline-block text-left group">
+              <a
+                class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                🌐 <span class="ml-2">EN</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >EN</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >ES</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >FR</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >DE</a
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-
     <main class="pt-16 min-h-screen">
       <div class="min-h-screen py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -818,7 +872,7 @@
               </li>
               <li>
                 <a
-                  href="contact.html"
+                  href="contactus.html"
                   class="text-gray-300 hover:text-white transition-colors"
                   >Contact Support</a
                 >
