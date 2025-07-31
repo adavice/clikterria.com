@@ -17,11 +17,11 @@ function renderCoaches() {
           <div class="coach-item p-3 mb-2 ${
             selectedCoach?.id === coach.id ? "active" : ""
           }" data-id="${coach.id}">
-              <div class="d-flex align-items-center">
+              <div class="flex items-center">
                   <div class="coach-item-avatar me-3" style="background-image: url('${coach.avatar || DEFAULT_AVATAR}')"></div>
                   <div>
                       <h6 class="mb-1 fw-semibold">${coach.name}</h6>
-                      <p class="text-muted small mb-0">${coach.role} expert</p>
+                      <p class="text-gray-500 small mb-0">${coach.role} expert</p>
                   </div>
               </div>
           </div>
@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error loading coaches:', error);
         document.querySelector('.chatbot-list').innerHTML = `
-            <div class="alert alert-danger">
+            <div class="alert bg-red-100 text-red-700">
                 Failed to load coaches. Please try refreshing the page.
             </div>
         `;

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="feature-card h-100">
                             <img src="${image}" class="img-fluid mb-3 rounded" alt="${item.title}" onerror="this.src='img/placeholder.jpg'">
                             <h3 class="h5 mb-3">${item.title}</h3>
-                            <p class="text-muted small mb-3">${new Date(item.pubDate).toLocaleDateString()}</p>
+                            <p class="text-gray-500 small mb-3">${new Date(item.pubDate).toLocaleDateString()}</p>
                             <a href="${item.link}" target="_blank" class="btn btn-primary btn-sm">Read More</a>
                         </div>
                     </div>

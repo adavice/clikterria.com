@@ -1,284 +1,848 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <meta name="robots" content="noindex" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LevelGuidz Admin</title>
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/bootstrap-icons.min.css" rel="stylesheet">
+    <title>Clikterria Admin</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link href="css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="./index.html">
-          <img src="img/logo_dark.svg" alt="Logo" height="30" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse text-center" id="navbarNav">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="./news.html">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" id="coachingNavLink">Coaching</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Guides</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./contact.html">Contact</a>
-            </li>
-          </ul>
-          <div class="d-flex justify-content-center">
-            <div class="user-section">
-              <!-- Login button shown when logged out -->
-              <a class="btn btn-outline-light" href="./index.html#login" id="loginButton">Login</a>
-              
-              <!-- Username dropdown shown when logged in -->
-              <div class="dropdown d-none" id="userDropdown">
-                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                  <span id="usernamePlaceholder"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="./index.html#login" id="logoutBtn">Logout</a></li>
-                </ul>
+  <body class="font-sans bg-gray-50">
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 z-40 hidden sidebar-backdrop"
+    ></div>
+
+    <div
+      id="sidebar"
+      class="fixed top-0 left-0 h-full w-80 glass-effect transform -translate-x-full transition-transform duration-300 ease-in-out z-50"
+    >
+      <div class="p-4">
+        <div class="p-2 flex items-center justify-between mb-8">
+          <a href="index.html"
+            ><div class="flex items-center gap-2 group">
+              <div class="w-8 h-8 relative flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-globe w-8 h-8 text-indigo-500 group-hover:rotate-12 transition-transform duration-300"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path
+                    d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
+                  ></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-mouse-pointer2 w-4 h-4 text-amber-500 absolute -bottom-1 -right-1"
+                >
+                  <path
+                    d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"
+                  ></path>
+                </svg>
+              </div>
+              <span class="text-xl font-bold gradient-text">Clikterria</span>
+            </div></a
+          >
+          <a id="closeSidebar" class="text-gray-500 hover:text-gray-700">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <nav>
+          <div>
+            <a
+              href="index.html"
+              class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-house w-5 h-5"
+              >
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                <path
+                  d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                ></path>
+              </svg>
+              <span>Home</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right w-4 h-4 ml-auto opacity-50"
+              >
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+
+            <a
+              href="coaches.html"
+              class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-users w-5 h-5"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Coaches</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right w-4 h-4 ml-auto opacity-50"
+              >
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+
+            <a
+              href="games.html"
+              class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-gamepad2 w-5 h-5"
+              >
+                <line x1="6" x2="10" y1="11" y2="11"></line>
+                <line x1="8" x2="8" y1="9" y2="13"></line>
+                <line x1="15" x2="15.01" y1="12" y2="12"></line>
+                <line x1="18" x2="18.01" y1="10" y2="10"></line>
+                <path
+                  d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"
+                ></path>
+              </svg>
+              <span>Games</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right w-4 h-4 ml-auto opacity-50"
+              >
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/20">
+            <div class="mb-6">
+              <a
+                href="contactus.html"
+                class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-mail w-4 h-4"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Contact Us</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chevron-right w-4 h-4 ml-auto opacity-50"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </a>
+              <a
+                href="cancel.html"
+                class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 text-gray-700 hover:text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-credit-card w-4 h-4"
+                >
+                  <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                  <line x1="2" x2="22" y1="10" y2="10"></line>
+                </svg>
+                <span>Cancel Subscription</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-chevron-right w-4 h-4 ml-auto opacity-50"
+                >
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </a>
+            </div>
+            <div>
+              <a
+                href="login.html"
+                class="bg-white inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border bg-background hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start gap-3 border-white/20 hover:bg-white/20"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-user w-4 h-4"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Login
+              </a>
+              <a
+                href="signup.html"
+                class="mt-3 text-white inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full justify-start gap-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-user w-4 h-4"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                Sign Up
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <header
+      class="fixed top-0 left-0 right-0 z-30 glass-effect border-b border-white/20"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4">
+            <a
+              id="openSidebar"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 hover:bg-white/20 transition-all duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-menu w-5 h-5"
+              >
+                <line x1="4" x2="20" y1="12" y2="12"></line>
+                <line x1="4" x2="20" y1="6" y2="6"></line>
+                <line x1="4" x2="20" y1="18" y2="18"></line></svg></a
+            ><a href="index.html"
+              ><div class="flex items-center gap-2 group">
+                <div class="w-8 h-8 relative flex items-center justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-globe w-8 h-8 text-indigo-500 group-hover:rotate-12 transition-transform duration-300"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path
+                      d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
+                    ></path>
+                    <path d="M2 12h20"></path></svg
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-mouse-pointer2 w-4 h-4 text-amber-500 absolute -bottom-1 -right-1"
+                  >
+                    <path
+                      d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"
+                    ></path>
+                  </svg>
+                </div>
+                <span class="text-xl font-bold gradient-text">Clikterria</span>
+              </div></a
+            >
+          </div>
+          <div class="flex items-center gap-4">
+            
+
+            <a
+              href="contactus.html"
+              class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-mail w-4 h-4"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg
+              ><span class="hidden sm:inline">Contact Us</span></a
+            >
+            <a
+              href="cancel.html"
+              class="justify-center whitespace-nowrap text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-9 rounded-md px-3 flex items-center gap-2 hover:bg-white/20 transition-all duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-credit-card w-4 h-4"
+              >
+                <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                <line x1="2" x2="22" y1="10" y2="10"></line></svg
+              ><span class="hidden sm:inline">Cancel Subscription</span>
+            </a>
+
+            <div
+              class="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
+            >
+              <a
+                href="login.html"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 px-4 py-2 hover:bg-white/20 transition-all duration-300"
+              >
+                Login</a
+              >
+              <a
+                href="signup.html"
+                class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 luxury-shadow"
+              >
+                Sign Up
+              </a>
+            </div>
+
+            <div class="relative inline-block text-left group hidden">
+              <a
+                class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                🌐 <span class="ml-2">EN</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >EN</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >ES</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >FR</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >DE</a
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
-    </nav>
+    </header>
 
-    <div class="admin-panel container my-4">
-      <div class="row g-4">
-        <!-- Left Panel -->
-        <div class="col-lg-4">
-          <div class="feature-card">
-            <div class="card-header bg-transparent border-0">
-              <h5 class="text-white mb-0 d-flex align-items-center gap-2">
-                <i class="bi bi-people-fill text-primary"></i>
-                Coach List
-              </h5>
-            </div>
-            <div class="card-body p-0 mt-3">
-              <div class="chatbot-list mb-3"></div>
-              <button class="btn btn-primary w-100" type="button">
-                <i class="bi bi-plus-lg me-2"></i>Add Coach
-              </button>
+    <main class="pt-16 min-h-screen">
+      <div class="min-h-screen">
+        <section class="py-20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+              <!-- Left Panel -->
+              <div
+                class="p-8 lg:col-span-4 bg-white border border-gray-200 luxury-shadow rounded-lg overflow-hidden"
+              >
+                <div class="feature-card">
+                  <div class="p-4">
+                    <h4
+                      class="text-lg text-gray-700 font-bold mb-0 flex items-center gap-2"
+                    >
+                      <i class="fa-solid fa-user"></i>
+                      Coach List
+                    </h4>
+                  </div>
+                  <div class="p-4">
+                    <div class="chatbot-list mb-3"></div>
+                    <button
+                      class="w-full px-6 py-2 text-white rounded bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 luxury-shadow transition duration-200"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-plus"></i>Add Coach
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Panel -->
+              <div
+                class="p-8 lg:col-span-8 bg-white border border-gray-200 luxury-shadow rounded-lg overflow-hidden"
+              >
+                <div class="feature-card">
+                  <div class="flex justify-between items-center p-4">
+                    <h4
+                      class="text-lg text-gray-700 font-bold mb-0 flex items-center gap-2"
+                    >
+                      <i class="fa-solid fa-user"></i>
+                      Profile
+                    </h4>
+                    <div class="flex space-x-2">
+                      <button
+                        id="saveBtn"
+                        class="btn-outline-primary border rounded text-sm font-medium text-green-700 border-indigo-200 hover:bg-gray-100 p-2"
+                        title="Save Changes"
+                      >
+                        <i class="fa-solid fa-check"></i>
+                      </button>
+                      <button
+                        id="deleteBtn"
+                        class="btn-outline-danger border rounded text-sm font-medium text-red-700 border-indigo-200 hover:bg-gray-100 p-2"
+                        title="Delete Coach"
+                      >
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="p-4">
+                    <div class="text-center mb-4">
+                      <div class="avatar-upload mx-auto">
+                        <button
+                          type="button"
+                          class="upload-btn bg-gradient-to-r from-indigo-500 to-purple-600"
+                        >
+                          <i class="fa-solid fa-upload"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <label class="block text-gray-700 mb-2">Name</label>
+                        <input
+                          id="profile-name-input"
+                          type="text"
+                          class="form-input w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 form-control required input"
+                          placeholder="Enter name"
+                        />
+                      </div>
+                      <div>
+                        <label class="block text-gray-700 mb-2">Role</label>
+                        <select
+                          id="profile-role-input"
+                          class="form-select w-full custom-role-select border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 form-control required"
+                        >
+                          <option value="Gaming" selected>Gaming expert</option>
+                          <option value="MOBA">MOBA expert</option>
+                          <option value="FPS">FPS expert</option>
+                          <option value="RPG">RPG expert</option>
+                          <option value="Battle Royale">
+                            Battle Royale expert
+                          </option>
+                          <option value="Auto Battler">
+                            Auto Battler expert
+                          </option>
+                          <option value="Tactical Shooter">
+                            Tactical Shooter expert
+                          </option>
+                          <option value="Sports">Sports expert</option>
+                          <option value="Strategy">Strategy expert</option>
+                          <option value="Racing">Racing expert</option>
+                          <option value="Card">Card Game expert</option>
+                        </select>
+                      </div>
+                      <div class="col-span-2">
+                        <label class="block text-gray-700 mb-2">Persona</label>
+                        <textarea
+                          id="profile-description-input"
+                          class="form-textarea w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 form-control required"
+                          rows="3"
+                          placeholder="Enter description"
+                        ></textarea>
+                      </div>
+                      <div class="col-span-2">
+                        <label class="block text-gray-700 mb-2"
+                          >Greeting Message</label
+                        >
+                        <textarea
+                          id="profile-greeting-input"
+                          class="form-textarea w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 form-control required"
+                          rows="2"
+                          placeholder="Enter greeting message"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Right Panel -->
-        <div class="col-lg-8">
-          <div class="feature-card">
+          <!-- Success Modal -->
+          <div class="modal fade" id="successModal">
             <div
-              class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center"
+              class="modal-content rounded-3xl text-white luxury-shadow bg-gradient-to-br from-indigo-500 to-purple-600"
             >
-              <h5 class="text-white mb-0 d-flex align-items-center gap-2">
-                <i class="bi bi-person-fill text-primary"></i>
-                Profile
-              </h5>
-              <div class="btn-group">
+              <div class="feature-card p-6 text-center">
+                <div class="mb-3">
+                  <i class="fa-solid fa-circle-check text-5xl mb-3"></i>
+                </div>
+                <h5 class="text-white text-xl font-bold">Changes Saved</h5>
+                <p class="text-white mb-5 text-lg">
+                  Your changes have been saved successfully.
+                </p>
                 <button
-                  id="saveBtn"
-                  class="btn btn-outline-primary btn-sm"
-                  title="Save Changes"
+                  type="button"
+                  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-white text-indigo-600 hover:bg-gray-100"
+                  data-bs-dismiss="modal"
                 >
-                  <i class="bi bi-check-lg"></i>
-                </button>
-                <button
-                  id="deleteBtn"
-                  class="btn btn-outline-danger btn-sm"
-                  title="Delete Coach"
-                >
-                  <i class="bi bi-trash"></i>
+                  Close
                 </button>
               </div>
             </div>
-            <div class="card-body">
-              <div class="text-center mb-4">
-                <div
-                  class="avatar-upload mx-auto"
-                  style="background-image: none;"
-                >
+          </div>
+
+          <!-- Confirm Modal -->
+          <div class="modal fade" id="confirmModal">
+            <div
+              class="modal-content rounded-3xl text-white luxury-shadow bg-gradient-to-br from-indigo-500 to-purple-600"
+            >
+              <div class="feature-card p-6 text-center">
+                <div class="mb-3">
+                  <i class="fa-solid fa-circle-exclamation text-5xl mb-3"></i>
+                </div>
+                <h3 class="text-white text-xl font-bold">Confirm Action</h3>
+                <p class="text-white mb-5 text-lg" id="confirmText"></p>
+                <div class="flex justify-center gap-2">
                   <button
                     type="button"
-                    class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0 upload-btn"
+                    id="confirmDelete"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-10 px-4 py-2 bg-white text-indigo-600"
                   >
-                    <i class="bi bi-upload"></i>
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    id="discardChanges"
+                    class="hidden inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-10 px-4 py-2 bg-white text-indigo-600"
+                  >
+                    Discard
+                  </button>
+                  <button
+                    type="button"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input h-10 px-4 py-2 bg-transparent text-white"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
                   </button>
                 </div>
               </div>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <label class="form-label text-white">Name</label>
-                  <input
-                    id="profile-name-input"
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter name"
-                  />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer
+      class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-globe w-6 h-6 text-white"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path
+                    d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"
+                  ></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">Clikterria</h3>
+                <p class="text-sm text-gray-400">Your Digital Playground</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-6 max-w-md">
+              Your premier destination for competitive game coaching and casual
+              HTML5 gaming. Elevate your skills, or just play for fun.
+            </p>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex items-center gap-2 text-sm text-gray-400">
+                <span>We accept:</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-20 h-10 bg-white rounded flex items-center justify-center"
+                >
+                  <img src="img/visa.png" alt="Visa" class="w-20 h-12" />
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label text-white">Role</label>
-                  <select
-                    id="profile-role-input"
-                    class="form-select custom-role-select"
-                  >
-                    <option value="Gaming" selected>Gaming expert</option>
-                    <option value="MOBA">MOBA expert</option>
-                    <option value="FPS">FPS expert</option>
-                    <option value="RPG">RPG expert</option>
-                    <option value="Battle Royale">Battle Royale expert</option>
-                    <option value="Auto Battler">Auto Battler expert</option>
-                    <option value="Tactical Shooter">Tactical Shooter expert</option>
-                    <option value="Sports">Sports expert</option>
-                    <option value="Strategy">Strategy expert</option>
-                    <option value="Racing">Racing expert</option>
-                    <option value="Card">Card Game expert</option>
-                  </select>
-                </div>
-                <div class="col-12">
-                  <label class="form-label text-white">Persona</label>
-                  <textarea
-                    id="profile-description-input"
-                    class="form-control"
-                    rows="3"
-                    placeholder="Enter description"
-                  ></textarea>
-                </div>
-                <div class="col-12">
-                  <label class="form-label text-white">Greeting Message</label>
-                  <textarea
-                    id="profile-greeting-input"
-                    class="form-control"
-                    rows="2"
-                    placeholder="Enter greeting message"
-                  ></textarea>
+                <div
+                  class="w-20 h-10 bg-white rounded flex items-center justify-center"
+                >
+                  <img src="img/mc.png" alt="MC" class="w-20 h-12" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1">
-      <div class="modal-dialog modal-sm modal-dialog-centered">
-        <div class="modal-content feature-card border-0">
-          <div class="modal-body text-center p-4">
-            <div class="mb-3">
-              <i
-                class="bi bi-check-circle text-primary"
-                style="font-size: 3rem"
-              ></i>
-            </div>
-            <h5 class="text-white">Changes Saved</h5>
-            <p class="text-muted mb-4">
-              Your changes have been saved successfully.
-            </p>
-            <button
-              type="button"
-              class="btn btn-outline-light btn-sm px-4"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Company</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  class="text-gray-300 hover:text-white transition-colors"
+                  href="about.html"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contactus.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Contact Support</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Legal</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="terms.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Terms &amp; Conditions</a
+                >
+              </li>
+              <li>
+                <a
+                  href="policy.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="sub_terms.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Subscription Terms</a
+                >
+              </li>
+              <li>
+                <a
+                  href="refund.html"
+                  class="text-gray-300 hover:text-white transition-colors"
+                  >Refund Policy</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Confirm Modal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content feature-card border-0">
-          <div class="modal-body text-center p-4">
-            <div class="mb-3">
-              <i
-                class="bi bi-exclamation-circle text-warning"
-                style="font-size: 3rem"
-              ></i>
-            </div>
-            <h3 class="text-white modal-title h5 mb-3">Confirm Action</h3>
-            <p class="text-muted mb-4" id="confirmText"></p>
-            <div class="d-flex justify-content-center gap-2">
-              <button
-                type="button"
-                id="confirmDelete"
-                class="btn btn-danger px-4"
-              >
-                Delete
-              </button>
-              <button
-                type="button"
-                id="discardChanges"
-                class="btn btn-warning px-4 d-none"
-              >
-                Discard
-              </button>
-              <button
-                type="button"
-                class="btn btn-dark px-4"
-                data-bs-dismiss="modal"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
+        <div
+          class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400"
+        >
+          <p>
+            ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Clikterria. All rights reserved.
+          </p>
+          <p class="mt-1">
+            <img
+              style="display: block; margin: auto; width: 170px"
+              src="data:image/png;base64,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"
+              alt=""
+            />
+          </p>
+          <p class="mt-1">
+            <img
+              style="display: block; margin: auto; width: 310px"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAAWCAYAAAAvpoARAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAB4PSURBVHhe7Z1dcFVXlt9/25mHVN1Uct0DppMrZqTWvXZsYWYSSzhc2Y2gX8LFtsCeBlM1SEA6Vamk+HA/GQnxKYSf2oCfmy9XxcZdNRjcyE/DR9sSsSVXxTZyxtaVUQ26Y4Op4c6kb1Ue0nPysNfaZ599z70I2u50ZbKqNv+79sfa67/PPmfts885wrQUnogAwABRYzQGohTdmNTqCVQJ9SaSZuZ+MWkx1AXnxS/UEx18p3IX71PQEBFhPD5RlNRjPiH+7vndq9Tx9fhFRLGegsrT6SKNypti0H/o3++V1B3f8LgnMTFf3Hyqnx7NUCXUvxOpc2AefOs8DrGJ+fvA30rSDCbwfviFCKbl4c6IFKfDqveC85O0lh6G5JpdtEL8DiStm/miWggv0vW8GmGqwd+paPehHmNw0QgvnikX5Xp+ov9jkYB/OD7huCWCUDjeDfD/qtQ5FB73FGzIYH5874bfqqR1cDe+6RXn5aHWCvV7QZVQh7jiA0TW+QghEegWxUAj1A60ecPUTd/QIH3dtrJt2wDrfPB8JBLdoutYdY+HQ20b6tIsTV+8dgd7d/fTpVkh33miTTZHvCYSPoppPGNM8o2Eh0UdA9VtG8logBacrhKovoRFzoRD8UF136cArYs+Kj/RowiWb2JoYBur20VXG1rewLb8SOoqoX6P0sh+UwyOl6YEX5KcNL/OFk3GuwHekzh+oZ6OyguPX8w3Zd5KWx+Vr9P1/HCoSfq0Htwf1mXKjzrdw6gJYnkpKs9Yt3UT6DFJQ01ivWke6kaoN8TY/1D3K/6Tf7HgX+3D2PUrxtiFWmEtO//Ln/HvO7/Hl1c/5++MRChBE6KmhG5tJnExf7qiFXP9PT6+IX1KecIHTFPEGOjezL7Na+jp/EO+/G+f8/fOAU2xQ4uf38lLf/Yj/nTB13zwV3+b6EtcCHyw+j9/9N/xbx76X0z/6mO+8usJR8V6nilY6GXHf36Bf/2b9/nkBhjpy2LAUzg0R9vW8RVbYlScy1Pa+Z/Y+Og/cOW/30jw7dy8i5888zR//Jv3+fiG8hdSAb9U1D4lx+kJXorWZwN0bd7FT3q+x5cffMH/FC4+L6f/0Z+wovWf8jdTH1K+4/OT8qBPHxPj4Uuo302KmxhaleFXH89BE/uL125nxwur+ON/GHPH1pUHx8vxC/gak6e0888p3LZ8TTB+XZt38ZM1T7Pih0+z4of/lsxXHzL9t8m+OhN1nuZP/vArPvyrO7YcgCJ9g39Or5TH6QfU3vuYv3H8LMTzJcDufvb0leh54nvMfPA5f+/xU16dWwb4jyu/x4wcZ2T+P/Kb9/lkTuq5eaG68m2C4XnlkoyDuq6Yl/Puf7/Hx3OSL6eJ9unrtpGHtvMmaK9FezevoWfFDxOp9Tfv8/Fckp/yTuoxKi9lFPNU9JK6IYnAPdVjNJaa36fqXsMHbGCLJMBZXPx4G9lf16hm2ni8PRlZ/MDSHK2tOOInI2GYH9uWnGYYRfagAWQ6WFn08utSkVUdGVvXc1D5Ot3zIUbpQ6o1wpBP55YB9mxZnsx3tlT3UVaQiuK7/q5bgc0LvT6FiI5by9rtlHIwe3GE0+M+H2kQ8nQWPJS6MlKx3pRfsn3zJBWl7V3HI/ChGTov4k4CPaKz/2WGenKSnW7H4nJWJuZXur9NU/uzbBv4MZ0Z27fLlz6e2Pwyq7NTHD90mAOHDnN8Cjo3bKOUj315ov9lSlzhgNQ5cKlCtmM929a2C6OY9uxFqTM8IniKSfW/Cca8bDaZDp5f257g6x8PbWvzk7rlF6Ltoynq+eRQk8x5bEYCfV9CtMadLp15qMn64OdFUZH+3QPsXQWjBw+x7+Ah9gsev1YTn8TTBI9Q97COn4dp7nkY2/R0yajTGyBRxAMaWuJIkWdpW4bZD3/JdC1DYWm+LpqFESiMTHUBFVIiXfPImOwzjKy2BdSo1qDtke5EvUTqLtAq9eod81BsK9q+pJuAXx0mqyZ+GU3l8xwbHuH0uPDUlUEqxnztKlJ1QdWbYkzH+WIMFPvY2pFh9tJhTl+VCs75UBdMyapH6UN1seXzAvjo1CscPHKeSsAvwd/IfFTLHi9NdXyDPpuh8zLuxOktvdsYGtjFahsPJDvdjjGGlt5OWuOKdX41TRTpG9zFng0dZNWGngfaR/45irkak798hzkpnXv7ApO1DJ1PFePx/uIKB06Ox/r4aUYrkG3toEUZB/Tj4z0/jHkB1Jit1Mh2rGFNoZ63E9VnZP5ftfPY8rc2E+jxT+jitHM9De20T2L5HEeHZfHj8bHlUtHnqbpDTdanWC+w5qc9tFYus3/4FBNGPBW88fZRTo9pX5of8wn1xuilwD3qdLXt6VKhTg8MxrpJeaZQfIquTIWpsTKfXK+RbetgsYs86ahJslITQWRXvSH60Y04skpIs50B09crkOui1G7barSzHbVTejJH9dp1qhltm4ZizEPbl+jpVZqi/opc8iI+tu8I3AqhGV+3AtN84edWYHV8FC24H+3PsX1ljurUW+4OYb6iVRuj/eV08cFfCYW6Q8fP18UQogc2fFS+oe7wHuT72QxUrnBw5BXerQSFdf0tZ2UHTF6aoprI91CPk9M9vvkFZKkxeeYwB8+IDZ0n0ia3pJVsbZZPymKDCJjhk9ka5PI8gZWJ8XEptxIBX1drkMnyfc2X/m7fkkqh+I2p5xvOq9vvTTBLhs6nlkuxx08lOL4WQz1GKbXzwNel0zoX7wU9JdQtyg8fo3R98do1dGUqjB4fi/OxvBRtVsA3OP+d3gCbJekx1n03UlH7jnXbOPaJCP7AGOJ3Yoxh2SM5mLvMJBB9ep3qkiX86KlznBqDyEWgbvqHeuDiIT57eJBSCzB3mf0nxqyn3ZvZu8pbalFj4o2jjJalPXaff6vedlNj4s2jjE7bp/QmkmjXABNybZrZJT32jmamnCwrPkVXpsbEtdssXCKRkDhyRoW17HjRW6XVpjj+6jlueJFYxcjAG6BzywAlj57dhrGr8D2Odw97d/cAFUaHTzFZ6GX7hg6qlw7LCgJMFNn92ZXJsZo8c8wbqyL9gyvITr3FsbdnwLnVzpqd6+ms2hWiLYj5eRXlR5G+FzvIVq5wQOzE5UX6BlfApcP8j4dllVyJV56RlLsVMVCd+gXH3i7b1VMU0bJ2O1taZzlx9DYrB7y6lSscPHlVBjCic/MuVmenOHHUrnytLGeT34YK717W37oyBSMr+S1u3kjdkdeZlHKKmxjqyTJ55jXenfEOYPuzbNvQQfXyK7wuw5Umk6desVspaRKMb9fmFbRWrvD6rQVs8/LdKl9RBjrWrZiZd3htRHLsLk+CL1E7S1szUL1t76yi+C2WyjdVIMtDeYMpe28rJd5yi8Uex7vozjHFJN+6eWWucvpSgT0re+grXrXngFdsFfEk/xw7dP7rdI2A7j72hvP/zWOMzshFKu38ePMoo2VlYIDl9O3uSczP2YsjnBq3zxS2v9hBVXUg6u4Prk9aP+ZpxyMYEKcXeLwtQ3XqAhMuz6unWpSn9NP1dN25zP6T48nrWKGXnerXzV52bGxl+o0jfPO0XE9FZi+OcGpMeRbTr7tfFNi7KsvEG0cYLcduRIVedm5cQvXiIbl+G0zdtbnChYMn7fVeeD8QR3cgKvJoC1z//H2rT19j+tfQ+nAxjjQRLopnl+3k0S8Ose/AIfadGCOKoGXdTvauynH9ouQfPMTPr1WBeE+sddUgz0e/ZJ/sv12Yy9D1Yj+dqG2NrA1QIzdANMZfXquR7eim03Gx2PlwDuYmGJ3WujafKCIq9rNXDsr+g4fYP/wWE3Sw9aVeFnsR1bbTyNrO6pcGKGWnOD48wv6DI+y/WKF11QB9xYho/BT7h0cYrQCVy+wfHrG3ltK1+hBhfezcMsCelVkm3hyRuiOyX7yLvuW2js9VdctP3fNWYgn0+mQBpZ0raK1NcfzEeFwQYHbZdh794jAHhg/bQBNBVOxjjwQlt199Zgo6fsyezUVvRWf3mLcM5PnMq1fNrWDb2h8k6/lc2p9l20Bg/xKslv185RdFP2D1jpfZ0lFl9NBhDkrddys5Vg9sY3W7tek6kD589ApS852u5UF+AoubWJ2r8O7J8bjLxPGJf88rqQ3HV+Y7UK3edHUc3qym3llom4gf2IBSKdsTHmBhliwZOjfsYmhwF3sGd7Fnc9H6Kv7bxh5Pa1zmk/LSahGMnWK0Aq0r+5Lnn4rqmuVxblm3nT0rc8xe9Od/9e7nx4tyvgGRBITs1Fv2fBy256TrK/ZE9DylJ2F0WM77gyMcv1ajddUOSu0x38jxjpPj3/4YhQzcuTmdzA+RaT69XoOWAl2RPZ56XDuf6iBbu8ZfjsXHufDcoL2eynXx59dq9trSbY+rDmPaddfnq3NEydvxBor9Nnj812Hb9sAwF+aSfCP7TEH2uwzw1MO0UeGzcd1jmuHT2Rq0PMwyJIKaOJJmqxPxqhcb/V5YkmH24iFOj9nAaoC5syftylfrzV3m6NkZDGAwTL53jSo5OrqtbrSvhuhFZGOYOzvBLDm61xXERwOFtXS3wOwXsjyQujYVKD2Zg8plTrm9xjKj70xRzXSwqlsauHbys1vuPN45Z1e5Bsy4nBRP9rLYa6JiOfr51ntT6LV7xWeO8W4Zt4c69/axpD1vJWKQvVgZSFsS7OX65do010FnBmY/PM+cUb71mK1Oyt6rtDPtlJbZ7abX9O4CoHye1y5VINdJKS9VQe5yTser9vJ5rsq+9mLpw5kWvl1P2buX1859acfFGMzV1zkxVdOaNq+7m86MvSv4yOM5eeoXsr++3PFWcStzbwwlIzXf6Sm+JrHIpp4cs5dfZ1LnpbQzwXFomtw4+DM6zvfF9e1qAWRY8JCvx9i1eT2dmQqjehcJcPV0HHi9oL3npV5aiHknxsc6I/NJeWk1q0+evMIsOUpb5Nme77vw8wbTmiz08rw+2xrXcYC5s6ft+ZCX8+PNo1YXA3NnjybPj/xCstQof2pvrQ3A+Cn3DCExisbY8/xVu1BTXjfetttgCxcl+VqMU8xfxscOShNU2zmKzxesSQyGbjpaoHp9ijnHLAPXz9jrJjbNnT3C6By0PdnLH9kOMWnXXSWpfB16+QYWL3oQatf5ZEaOoTFMnDhp73a0QfKZQp41y3IwN82EizQRf/3pdarkeLTbRh6NQJGuYKTfCHlriQpTYxJwG6TrX4xhY59tGZVvUwWyD+XjfM+HEF0IdPoYn81Btu0xFkuUXryklWztGhdtV3HdCGh/jEKmxsSvZLtLy6e/8fwIugG6Hs5BZYLRsmcybe/WE/U2zrc8WnSveLqe38TnFci08nhe+Xkt3UpEbcpKBuIVmbbRppXLsprbbi/izvmkt9XqzYROvoN8pkb52kw9r/Eys2TIL/HebqnN8ons4Olq8SsZm0Xqo7aPIiKKPJqTwO2vcqKIuVt2HYyuGgs5u+pV/q4Pb3894KP1vi2x9tpZvcNuG50eS3JKHAdF/3jJb5fvxkHPBWtN831xNl0twHs+EOfbh9erc3GAbijl8xw7IwuhYux/3fyoQ1V1vo1xcapmFwnedyXaxs5bX5f5T4XPxpLzX8ei5XF9liJdiIEIEudHVP6GKhk6X/S+J0rBusx8Lzt2D7B39wB7Zesp+5Ds4fl8owaohiLrXczT14FojKk5yLY+ZgMvEVF3gVYqjJ0tWx2AGtOflq352LqcPw+yyMtz111vWLUwke+7Cdy4eQcyS/gPW+KdH9thsuEDGjFMvoPCPwNaeti3Zzf7hgYtblxCFhutFgeBtHqr7KKaAf5lNgO1O9x0ETENNYBphFQUSY24SbRhLq6PMUy8P0U1s8Su8k03q5ZkmP3gPDfiDmPHFz1IlgxdGwftpBiSyTEk+5JhBAYMeRY+COR6ZCLFKX424rMJeHs+GH2g6fSAp9TVlYlKYqWiPuqYuHKvM9fUMHnyLbui3tBHpz8enlRvxXcDBuChrHveErMS9Gwn85Wv8g/yfT2/wNr3eGnyfTcmz0LniLdSU3RFST6h/tuKMYaW3pK9Yzl1ta7/xHFQ9I9Xgl+Sb+xpfV42u8jpDhfpsfH6yj/H9kG7TXji0GuJZ3iNELcga3f+ewPaAFWN55t7I+rZXndXqG1cPU//fjYDtSpfG3/+x/yS54fHO3GGgWGc08NvMVnLUZLzsb+YwlMUQ5H+oQH2vtjK9JsjHBgeYf/wZWZJ4+mdTz7OyJgtsjsTmpRHqE9+UYFMG0vz1sayh3NQmbYBO3HsfX7KN5lv/OuuuhU3TuR7je3P8VPsf+Ma1ZaVcn3fwjJpYLyG7juFlsfbyDLHBdlr0j2nfQfs3haZNpa26yomGWAUv6raW36r6x5YcgUQp2S+iq6c/Mhbh+FKJIrs84+aff6xeG0XrbIKiaOg5+jNO1SpMfGG3VO0zxRiPPoX07aJawcRZb65I88KdO9S0X924DVK8PR8iPTuwunxXqNdSWpRRBTd5BtX1ePvaHkrz7DcDVMEzHDh1cv2Nn+wj07p2xUHegTg9q0TQ5GoGnuh+cpX+Qf5vi4XJPU5maQiEVFU5htxRMsTfD2bCZ/FiGIsyjPId3o9J4v6TUKO1QMvM6RJXilt7XmZoYFN9o6ljs9dkvSlx9PmzXCrCmQXkJM6Wje3MAtUuaVvJS3fZF9trVzhwJHz3Ag5yD9JbMC/AUaOl2b7x6HMBdl+fV6+jdC2tjypp8//mF+yPM63taXIpTIXXrXn4/Epuw+/fV0+5qkSRXRu6aG1do3jw/bFlkiNSLl05qGmmC+R7Ey02p0JNw62Ur0+9j4TtQyFx/NE8tx29vOxBC/nol4vHAK1O3yF9bXOPSD6+k58Hnn5Pi+rR0TT5zhyYJh9B84w8escpaGdrGnXcbD+yncKBZa2ZWCuzEQQOYyBG2ftnlthqd0Xc5EniEw3blVt8Cgk822KI11SbxApNYIGKwmnuwa6Eplh9IMKtHTxfFuG6tSY7JWps55DM7epCh/nqJarTcRRQQN8/Xc1yBXoCvgHVRO/jJc034DdHsm0srQg4+CtiLoeyUFtlk+95zDZ7KJ4HIyBQgeFjNgTnkmM6ThfzFVOn5miSo7SzudocXy1WqDLOOWXtNfxM8U8rditpUS+othqphtuclsCuc/fGGO36qSFMcZeJHJ5uup45t0D1Y8c4QwLFnl9GiPbFSrKU+trdpJFne/mKq+PvMLBMMnrpLOXX+Fg8MyjaRJu9rdKPA4AH03brZKlefXJAPJWUqXMRwDYZz/2TS/7DCFgZvUkPcvXP47u+KdjPO6aHcy7mfP8xZT9dqEY3tl5fRpM4/kfnh/5OB9xPXF+qFn5R585ZLMPgdet9u3VtrpBvmXy9ARqivni7Uw8/3wh5m8rpVyv7LPZbFsHy9Z10Va7xkX9Xskxs0FDdYv2mzHu3LbfqATuKT9LK8OC72ufNn/x0jZ3J+58kQbGlLnw6mWuazuPr32mUOymK2PfOtLwpJHGou6L2Q9hwnIX0cZO2jeJNu60X1tKfsu6zZTyceSzAUwjZDJSQkTUvZm9u+1T90TERaKZ38KL5EhEzmZqTH9S9kKpVxfcHmi2Yz39Rb88T2lLb+K7DJUIDY45SvpgTqsU++krxrq7gIme9Fh4jJ1itJKhc8N2Vsuzg8h9bVxj8p1z3ACIyrJnvoI+9+V2O6VnvFdpHa8QXYU4v3yeYxcrkOlg62ZxuqGMczrty9j8c2xbmaM6dcG+Aud15VB8aKZHzDD6YQVyK9jW+wM7TlFEtHyT9/GYXXnNnRtlspZjta7EpW5n/4/ddk4URTDzGeUatPZssm/DYF9HXZd4jfU+JRhf5RSWR5F9O2loYBOdkcc90uOn8zm+K/CMuHEAiMbG7LbMM8/SIqUta9e4h8gR8bOfyffjN6ECz2Ru9bkXA8Aex+0rc1CZtMcxkrxBffaU5Fs3ryI9v2J+c2cvyDkY17F8PR19ayll/q/rY3UeIi1/0ZbrVaJl3Q5KOfuyxw0gyvfSvy7v8S7yWA6qVfuwJTEOkT7/0+d12Nc89RVN5Vfst3/zLOCX4Dt9jqMX7bmxd3NRbMm1iIiuzcnr141PrlPNtFFsy1C9PsUNvZ5517/skmfcdRIiOrdssC+2vCd3FUGSHonKU0zXoG3VZtkBsOPywhL90t7WW7yu3z1TjACKedqocftr6VP4/YEx0PlIC3hvHUU22HjfJcDkFxXWrFrCj7rtNwt+RLJigIjJE4e4uW4nWzcO0qVFtWscP6sRUKvH710bZaj5+lM6aPqdggubgETkruyEfc/ZhtBkXcG5s0fZf7OfvavsZ+oqsxdHmnynMM7p4VuUXlrP1t0dcWFtiuOvGoyM3NzZCWY7eijtHqCk3yk4UnE0nzwxwtfrdrD1xYF4rKgweug0k8Qrsrm3jzGa3UVp1QB7ViFv+bzF5DPr7STweCXRgvuh+VdPc3zRdrZ2rGDPzgUcP3JbKwpPD8dPc+DWc2zfsJ49HuXZy69weiz+q54xveT79GF+Qge4+joHzSaGejz7lSscvAxDPVlw4zDDu0df4Zv+lykN7qIkValNcWJEvvY1RupdYcHAClYP7mK11jkzxboNHoH7kWB8dTUflhtj5MH4FSaNzGOvvhsD19CX+LjbA/Al7x75Bez8MVsH3QAlv80AkFdNO0XzJX57LFtXZ/bSYY7p+/vGewGiXM+3bl6Z5Inixv/DCl36bYE3350uvydPHObrdduT8782Za8Vzc6P4VP2/JBLY7ZjPXu9Q1udeotjZ+1qJTHGeieRHaDkbFYYHb4Mu3vIimNdj9g3E+NvEAL+qo+fYv94ntJL69k71CNlKhVGT3jXr5nzjM8NUGqpMfGpvStz1z+M/VbrjQkWbhxkn2/joN2WdnNISqyuF84yoz+7zMKhHtYMDbIGe839+RvXeGHjkvgw8SBd/nWZGhNvHOHCjFiTY2X+//+nIDgvfqGe6OA7lbt4n4L1f6o78v8+foJfiL97fvcqdXzDj7fCPzmd8qe7nS7SqLwpBv1baae0cz0LPow/1Pq9kLrjGx53+21AsWo/lEzMl/v809Uqof6dSJ0Dd+db73GB0k/Xs/AD/Wisifl7xM4tg6zhMvv0I1+VfC87N7Yx/cYRLgTf3yYkNFiH8+F3NyT4TsHEm1SqO6SBjrXno2fGoqaELlGpAdb34aP43AgdJ4tJh0JdUGzX6Ql+6oPqgvZnQ7TJ5ig/I7bmhzE/k8IvHW1bMWL7bsgvRAsOkz8TeozSh+p+nwFaF5L8Evo8Uh1f7UN5N+hbfiR1kUblTTHo3xj7Jl+eKS5drfc7kQL+zkbYh49YqRvvBpgQxy/UFbt5LFdhXL+cN958cfOpwfinoTuuqlsbTVHPD4earI/O9TQUd2OUVp5uK3toAix0UGCKi/r9kpfS+DVHzwfvuynl46OKzUtPBO6qHmPQpzEYaaCoBkI9NmQwLYVOu5FkgsiiuklZOYaoEupNJM3MfFElqWuNUBecF79Qb9rhtyppPJtjvHKzBu7nTkB0le+Q391EeYW6wwYr8zRUXuGdQB3fe5RG9pticLxUQr6/F9JofjTAf5x3EiHWmw/1CFi2ZZDSg9c4/rNz/HVoJeVOod56ijTrMBW9jCb84u8UEAx1bH0fTYiaEnoyEoZof3mY6DOMuEnUlNTVgVAXFNuqa1/iQuCD6oL2Z70uaJNt2xDFdjom+biVSFO0bR1fsSVGxblGaMHpmhWrcZVGqH1KjtMb8EvoKUl5hbpD7SPUUzAxHr6E+j1KI/tNMThemkK+xnjj5HRpE45f2IePWHHHxenpmBDHL9TT0fIQ3ZuPDdFWSujKz+rWRlPU88mhJvHJepiO4m6M0srTbWUPzd0wTsrD17u2DrJvaJDSg1Mc/9k5bgR8HYooL2UU81T0krohicA91WM0GKlQp3sN4zsFTF3ESKBJW2nOE+chWj3U7wfTJa2mhwl+IdZXn0eHv5Wo+VCfPzZ4ptCUX6h/d/zuVe46HuEKvQm6lspXxem2PGw3Lwz8+r2S8LjWzYPmmHbnE/K9G36nktbh3fhqhVCv8zi4M08zPw+Mrd3HeKQZTOXn6XflF+K39H80q4R6Uu6xh/u5aIX6byENvJoXqoXkJGrGL8SAr8q3yO9eJY1nEhv/H82Ji0oaX5VQ/39dwuMZjEs4XvaiHDxIbzT+giqh/juRhvyC+e1jeH54jNL43SuqhPp9SR2/sMMUvk34pWNjuWv380AVX/8/9bv399o+WtQAAAAASUVORK5CYII="
+              alt=""
+            />
+          </p>
         </div>
       </div>
-    </div>
-    <footer class="footer py-5 mt-auto">
-        <div class="container">
-            <div class="row footer-main">
-                <div class="col-lg-4 footer-branding">
-                    <a href="#" class="footer-brand d-inline-block">
-                        <img src="img/logo_dark.svg" alt="Logo" height="30">
-                    </a>
-                    <p class="text-muted small mt-2 mb-0">&copy; <script>document.write(new Date().getFullYear())</script> LevelGuidz. All rights reserved.</p>
-                </div>
-                
-                <div class="col-lg-8 footer-links">
-                    <div class="row">
-                        <div class="col-6">
-                            <h5 class="text-white mb-3">Company</h5>
-                            <ul class="nav flex-column footer-nav">
-                                <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-                                <li class="nav-item"><a class="nav-link" href="./faq.html">F.A.Q.</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-6">
-                            <h5 class="text-white mb-3">Legal</h5>
-                            <ul class="nav flex-column footer-nav">
-                                <li class="nav-item"><a class="nav-link" href="./terms.html">Privacy Policy</a></li>
-                                <li class="nav-item"><a class="nav-link" href="./terms.html">Terms of Service</a></li>
-                                <li class="nav-item"><a class="nav-link" href="./refund.html">Refund Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            <div class="row footer-disclaimer">
-                <div class="col-12">
-                    <p class="text-muted small text-center px-lg-5">All brand names, (registered) trademarks, images and product descriptions are the property of their legal owners and are neither sponsor nor partner of this promotion.</p>
-                </div>
-            </div>
-            </div>
-        </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="./js/main.js"></script>
-    <script type="module" src="./js/admin_panel.js"></script>
+
+    <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/admin_panel.js"></script>
   </body>
 </html>

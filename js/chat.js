@@ -15,13 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.querySelector('.send-btn');
     const chatInput = document.querySelector('.chat-input');
 
+    // Add single event listener for chat triggers
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.chat-trigger');
+        if (trigger) {
+            e.preventDefault();
+            if (coachListPanel) {
+                coachListPanel.style.display = 'block';
+            }
+            loadCoachesList(); // Use existing function
+        }
+    });
+
     // Hide coach list panel initially
     const coachListPanel = document.querySelector('.coach-list-panel') || document.querySelector('.col-lg-3');
     if (coachListPanel) coachListPanel.style.display = 'none';
 
     // Add preview container after chat input initialization
     chatInput.insertAdjacentHTML('afterbegin', `
-        <div class="media-preview-container d-flex flex-wrap gap-2 my-2"></div>
+        <div class="media-preview-container flex flex-wrap gap-2 my-2"></div>
     `);
     
     function filterCoachText(text) {
@@ -104,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error loading coaches:', error);
             chatMessages.innerHTML = `
-                <div class="alert alert-danger">
+                <div class="alert bg-red-100 text-red-700">
                     Failed to load coaches. Please try refreshing the page.
                 </div>
             `;
@@ -135,12 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 storeStatus(coach.id, status);
             }
             return `
-                <div class="coach-item d-flex align-items-center gap-3" data-id="${coach.id}" data-status="${status}">
+                <div class="coach-item flex items-center gap-3" data-id="${coach.id}" data-status="${status}">
                     <div class="coach-item-avatar" style="background-image: url('${coach.avatar || DEFAULT_AVATAR}')">
                     </div>
                     <div>
                         <h6 class="mb-0">${coach.name} <div class="coach-status status-${status}"></div></h6>
-                        <small class="text-muted">${coach.role}</small>
+                        <small class="text-gray-500">${coach.role}</small>
                     </div>
                 </div>
             `;
@@ -236,7 +248,7 @@ function renderMessagesForCoach(coachId) {
                 // Only insert separator if not the very first message, or if the first message is not today
                 if (idx === 0 || dateStr !== lastDateStr) {
                     const sep = document.createElement('div');
-                    sep.className = 'chat-date-separator text-center text-muted my-2';
+                    sep.className = 'chat-date-separator text-center text-gray-500 my-2';
                     sep.textContent = dateStr;
                     chatMessages.appendChild(sep);
                     lastDate = new Date(msgDate.getTime());
@@ -296,7 +308,7 @@ async function handleTextMessage(message, coachId, originalStatus) {
     } catch (error) {
         chatHistory.get(targetCoachId).push({
             content: `
-                <div class="alert alert-danger mb-0">
+                <div class="alert bg-red-100 text-red-700 mb-0">
                     <i class="bi bi-exclamation-triangle me-2"></i>
                     ${error.message}
                 </div>
@@ -308,7 +320,7 @@ async function handleTextMessage(message, coachId, originalStatus) {
 
         if (activeCoachId === targetCoachId) {
             addMessage(`
-                <div class="alert alert-danger mb-0">
+                <div class="alert bg-red-100 text-red-700 mb-0">
                     <i class="bi bi-exclamation-triangle me-2"></i>
                     ${error.message}
                 </div>
@@ -384,7 +396,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
         
         // Add delete button for user messages
         const deleteButton = isUser ? `
-            <button class="btn btn-link btn-sm text-muted delete-message p-0 ms-2" title="Delete message">
+            <button class="btn btn-link btn-sm text-gray-500 delete-message p-0 ms-2" title="Delete message">
                 <i class="bi bi-trash"></i>
             </button>
         ` : '';
@@ -418,7 +430,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             // Voice message: render with icon and audio player if isAudio is true
             if (isAudio) {
                 messageContent = `
-                    <div class="audio-message-block d-flex align-items-center gap-2">
+                    <div class="audio-message-block flex items-center gap-2">
                         <i class="bi bi-mic-fill text-primary"></i>
                         <audio src="${content}" controls class="audio-message flex-grow-1"></audio>
                     </div>
@@ -440,13 +452,13 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
         }
         message.innerHTML = `
             <div class="message-content">
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="flex items-center justify-content-between">
                     <div class="flex-grow-1">
                         ${messageContent}
                     </div>
                     ${deleteButton}
                 </div>
-                <div class="message-timestamp text-end text-muted" style="font-size: 0.8em; opacity: 0.7; margin-top: 0.25rem;">
+                <div class="message-timestamp text-end text-gray-500" style="font-size: 0.8em; opacity: 0.7; margin-top: 0.25rem;">
                     ${timeStr}
                 </div>
             </div>
@@ -649,7 +661,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
         } catch (error) {
             chatHistory.get(targetCoachId).push({
                 content: `
-                    <div class="alert alert-danger mb-0">
+                    <div class="alert bg-red-100 text-red-700 mb-0">
                         <i class="bi bi-exclamation-triangle me-2"></i>
                         ${error.message}
                     </div>
@@ -661,7 +673,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
 
             if (activeCoachId === targetCoachId) {
                 addMessage(`
-                    <div class="alert alert-danger mb-0">
+                    <div class="alert bg-red-100 text-red-700 mb-0">
                         <i class="bi bi-exclamation-triangle me-2"></i>
                         ${error.message}
                     </div>
@@ -796,7 +808,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
         toast.innerHTML = `
             <div class="toast-body feature-card border-0">
                 <span>
-                    <div class="d-flex align-items-center gap-2">
+                    <div class="flex items-center gap-2">
                         <i class="bi ${success ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'}"></i>
                         <span>${message}</span>
                     </div>
@@ -860,7 +872,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
         }
 
         const previewHtml = type === 'image' ? `
-            <div class="media-preview d-flex align-items-center gap-2 my-2">
+            <div class="media-preview flex items-center gap-2 my-2">
                 <i class="bi bi-image text-primary"></i>
                 <img src="data:image/jpeg;base64,${src}" class="img-fluid rounded" style="max-height: 100px;">
                 <button class="btn btn-sm btn-outline-danger" onclick="this.closest('.media-preview').remove()">
@@ -898,7 +910,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
                 }
 
                 const previewHtml = `
-                    <div class="audio-preview d-flex align-items-center gap-2 my-2">
+                    <div class="audio-preview flex items-center gap-2 my-2">
                         <i class="bi bi-mic-fill text-primary"></i>
                         <audio src="${audioUrl}" controls class="audio-message flex-grow-1"></audio>
                         <button class="btn btn-sm btn-outline-danger" onclick="this.closest('.audio-preview').remove()">
@@ -961,7 +973,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
         if (coachListPanel && chatPanel) {
             coachListPanel.style.display = 'none';
             chatPanel.classList.add('justify-content-center');
-            chatPanel.classList.add('align-items-center');
+            chatPanel.classList.add('items-center');
             chatPanel.style.margin = '0 auto';
         }
     }

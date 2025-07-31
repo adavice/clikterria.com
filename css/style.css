@@ -45,7 +45,7 @@ a {
   background-clip: text;
 }
 
-.mainTable{
+.mainTable {
   margin-bottom: 30px;
   display: block;
 }
@@ -56,7 +56,195 @@ a {
   color: #374151;
 }
 
-ul li.list-style{
+ul li.list-style {
   list-style: disc;
   margin-left: 20px;
+}
+
+/* Navigation Styles */
+.nav-link {
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--primary-dark);
+}
+
+.nav-link.active {
+  color: var(--primary-dark);
+}
+
+/* Card Styles */
+.feature-card {
+  border-radius: 0.75rem;
+}
+
+/* Avatar Upload */
+.avatar-upload {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  background-color: rgb(55, 65, 81);
+  position: relative;
+  margin: 0 auto;
+}
+
+.upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal.show {
+  display: block;
+}
+
+.fade:not(.show) {
+  opacity: 0;
+  z-index: 20;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 1rem;
+}
+
+/* Custom Role Select */
+.custom-role-select {
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* Chat Components */
+.chat-window {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.coach-item-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-color: rgb(255, 255, 255);
+}
+
+.chat-messages {
+  height: calc(100vh - 300px);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.chat-input-container {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.chat-input-row {
+  width: 100%;
+}
+
+.chat-buttons-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chat-buttons-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Messages Styling */
+.message {
+  margin-bottom: 1rem;
+  max-width: 80%;
+}
+
+.message-content {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+}
+
+.message.user {
+  margin-left: auto;
+}
+
+.message.user .message-content {
+  background-color: var(--primary);
+  color: white;
+}
+
+.message.bot {
+  margin-right: auto;
+}
+
+.message.bot .message-content {
+  background-color: rgb(31, 41, 55);
+  color: white;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Custom Scrollbar */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.chatbot-list {
+  min-height: 200px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.coach-list-panel {
+  border-radius: 1rem;
+  overflow: hidden;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta name="robots" content="noindex" />
     <meta charset="UTF-8" />
@@ -11,6 +11,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body class="font-sans bg-gray-50">
@@ -391,7 +398,7 @@
             >
           </div>
           <div class="flex items-center gap-4">
-            <!-- Language Switcher Button -->
+            
 
             <a
               href="contactus.html"
@@ -451,7 +458,7 @@
               </a>
             </div>
 
-            <div class="relative inline-block text-left group">
+            <div class="relative inline-block text-left group hidden">
               <a
                 class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
               >
@@ -615,7 +622,7 @@
                   Choose your favorite competitive game, find a coach, and
                   transform your play.
                 </p>
-                <a
+                <a href="coaches.html"
                   class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-white text-indigo-600 hover:bg-gray-100"
                 >
                   Find a Coach
@@ -653,7 +660,7 @@
                 <p class="text-lg text-orange-100 mb-8 max-w-md">
                   Enjoy HTML5 games on demand, just for fun.
                 </p>
-                <a
+                <a href="games.html"
                   class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input hover:text-accent-foreground h-10 px-4 py-2 bg-white text-amber-600 hover:bg-gray-100"
                 >
                   Browse Games
@@ -828,7 +835,7 @@
                     >
                   </div>
                 </div>
-                <a
+                <a href="signup.html"
                   class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white py-4 text-lg font-semibold"
                 >
                   Start Free Trial
@@ -893,7 +900,7 @@
                     <span class="text-indigo-100">Priority support</span>
                   </div>
                 </div>
-                <a
+                <a href="signup.html"
                   class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 w-full bg-white text-indigo-600 hover:bg-gray-100 py-4 text-lg font-semibold"
                 >
                   Get Premium Access
@@ -915,7 +922,7 @@
             <div
               class="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <a
+              <a href="signup.html"
                 class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-6 text-lg font-semibold"
               >
                 Sign Up for Free<svg
@@ -1078,5 +1085,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/form.js"></script>
   </body>
 </html>

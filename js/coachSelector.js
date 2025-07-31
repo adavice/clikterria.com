@@ -49,11 +49,11 @@ function renderGamesList() {
     const gamesList = document.getElementById('gamesList');
     if (!gamesList) return;
     gamesList.innerHTML = games.map((game, idx) => `
-        <button class="list-group-item list-group-item-action d-flex align-items-center gap-3${idx === 0 ? ' active' : ''}" data-game="${game.key}">
+        <button class="list-group-item list-group-item-action flex items-center gap-3${idx === 0 ? ' active' : ''}" data-game="${game.key}">
             <img src="${game.img}" alt="${game.name}" width="50" height="50" class="rounded">
             <div>
                 <h6 class="mb-0">${game.name}</h6>
-                <small class="text-muted">${game.genre}</small>
+                <small class="text-gray-500">${game.genre}</small>
             </div>
         </button>
     `).join('');
@@ -66,7 +66,7 @@ async function renderCoachesInModal(gameKey) {
     if (!user || !user.username) {
         coachesList.innerHTML = `
             <div class="text-center py-4 w-100">
-                <div class="mb-3 text-muted">Please log in to view the list of available coaches.</div>
+                <div class="mb-3 text-gray-500">Please log in to view the list of available coaches.</div>
                 <a id="loginModalBtn" href="index.html#login" class="btn btn-primary">Go to Login</a>
             </div>
         `;
@@ -95,7 +95,7 @@ async function renderCoachesInModal(gameKey) {
         }, 0);
         return;
     }
-    coachesList.innerHTML = '<div class="text-muted">Loading coaches...</div>';
+    coachesList.innerHTML = '<div class="text-gray-500">Loading coaches...</div>';
     try {
         const coaches = await loadCoaches();
         let genre = null;
@@ -111,16 +111,16 @@ async function renderCoachesInModal(gameKey) {
             : [];
         filtered = sortCoachesByRole(filtered);
         if (filtered.length === 0) {
-            coachesList.innerHTML = '<div class="text-muted">No coaches found for this game.</div>';
+            coachesList.innerHTML = '<div class="text-gray-500">No coaches found for this game.</div>';
             return;
         }
         coachesList.innerHTML = filtered.map(coach => `
             <div class="col-md-6">
-                <div class="coach-card border p-3 rounded d-flex gap-3 align-items-center coach-selectable" data-coach-id="${coach.id}">
+                <div class="coach-card border p-3 rounded flex gap-3 items-center coach-selectable" data-coach-id="${coach.id}">
                     <img src="${coach.avatar || 'img/default-avatar.png'}" alt="${coach.name}" width="60" height="60" class="rounded-circle">
                     <div>
                         <h6 class="mb-1">${coach.name}</h6>
-                        <small class="text-muted">${coach.role || ''} expert</small>
+                        <small class="text-gray-500">${coach.role || ''} expert</small>
                         <div class="mt-1">
                             <span class="badge bg-primary">${coach.status || 'online'}</span>
                         </div>

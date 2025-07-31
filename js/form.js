@@ -34,13 +34,13 @@ function showToast(message, success = false) {
 
   // Create toast element
   const toast = document.createElement('div');
-  toast.className = `toast align-items-center text-bg-${success ? 'success' : 'danger'} border-0 show`;
+  toast.className = `toast items-center text-bg-${success ? 'success' : 'danger'} border-0 show`;
   toast.setAttribute('role', 'alert');
   toast.setAttribute('aria-live', 'assertive');
   toast.setAttribute('aria-atomic', 'true');
   toast.style.minWidth = '250px';
   toast.innerHTML = `
-    <div class="d-flex">
+    <div class="flex">
       <div class="toast-body">
         <i class="bi ${success ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'} me-2"></i>
         <span>${message}</span>
