@@ -248,3 +248,8 @@ ul li.list-style {
   border-radius: 1rem;
   overflow: hidden;
 }
+
+/*form*/
+input[type="checkbox"]{
+  cursor: pointer;
+}
