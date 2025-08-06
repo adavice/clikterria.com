@@ -253,3 +253,13 @@ ul li.list-style {
 input[type="checkbox"]{
   cursor: pointer;
 }
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.tooltip-button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
