@@ -49,7 +49,7 @@ export async function initAuthGuard() {
     if (PROTECTED_ROUTES.includes(currentPage) || ADMIN_ROUTES.includes(currentPage)) {
         // Check if user is logged in locally
         if (!authService.isLoggedIn()) {
-            window.location.href = '/index.html#login';
+            window.location.href = '/login.html';
             return;
         }
         
@@ -60,13 +60,13 @@ export async function initAuthGuard() {
             if (window.showToast) {
                 window.showToast('Your session has expired. Please log in again.');
             }
-            window.location.href = '/index.html#login';
+            window.location.href = '/login.html';
             return;
         }
 
         // Additional admin check for admin routes
         if (ADMIN_ROUTES.includes(currentPage) && !authService.isAdmin()) {
-            window.location.href = '/index.html#login';
+            window.location.href = '/login.html';
             return;
         }
     }

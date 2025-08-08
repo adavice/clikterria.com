@@ -2,7 +2,7 @@
 export function setupCoachSelectorTriggers() {
     initCoachSelectorModal();
     // Nav link
-    const coachingLink = document.getElementById('coachingNavLink');
+    const coachingLink = document.querySelector('coachingNavLink');
     if (coachingLink) {
         coachingLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -49,7 +49,7 @@ function renderGamesList() {
     const gamesList = document.getElementById('gamesList');
     if (!gamesList) return;
     gamesList.innerHTML = games.map((game, idx) => `
-        <button class="list-group-item list-group-item-action flex items-center gap-3${idx === 0 ? ' active' : ''}" data-game="${game.key}">
+        <button class="w-full text-left flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${idx === 0 ? 'bg-blue-600 text-white' : 'hover:bg-blue-50'}" data-game="${game.key}">
             <img src="${game.img}" alt="${game.name}" width="50" height="50" class="rounded">
             <div>
                 <h6 class="mb-0">${game.name}</h6>
@@ -65,9 +65,9 @@ async function renderCoachesInModal(gameKey) {
     const user = getCurrentUser();
     if (!user || !user.username) {
         coachesList.innerHTML = `
-            <div class="text-center py-4 w-100">
+            <div class="text-center py-4 w-full">
                 <div class="mb-3 text-gray-500">Please log in to view the list of available coaches.</div>
-                <a id="loginModalBtn" href="index.html#login" class="btn btn-primary">Go to Login</a>
+                <a id="loginModalBtn" href="login.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">Go to Login</a>
             </div>
         `;
         setTimeout(() => {
@@ -87,8 +87,8 @@ async function renderCoachesInModal(gameKey) {
                             }
                         }, 400);
                     } else {
-                        // Redirect to index.html#login
-                        window.location.href = 'index.html#login';
+                        // Redirect to login.html
+                        window.location.href = 'login.html';
                     }
                 });
             }
@@ -115,14 +115,14 @@ async function renderCoachesInModal(gameKey) {
             return;
         }
         coachesList.innerHTML = filtered.map(coach => `
-            <div class="col-md-6">
-                <div class="coach-card border p-3 rounded flex gap-3 items-center coach-selectable" data-coach-id="${coach.id}">
-                    <img src="${coach.avatar || 'img/default-avatar.png'}" alt="${coach.name}" width="60" height="60" class="rounded-circle">
+            <div class="w-full md:w-1/2 px-2 mb-4">
+                <div class="coach-card border border-gray-300 p-3 rounded-lg flex gap-3 items-center coach-selectable hover:shadow-md transition-shadow cursor-pointer" data-coach-id="${coach.id}">
+                    <img src="${coach.avatar || 'img/default-avatar.png'}" alt="${coach.name}" width="60" height="60" class="rounded-full">
                     <div>
                         <h6 class="mb-1">${coach.name}</h6>
                         <small class="text-gray-500">${coach.role || ''} expert</small>
                         <div class="mt-1">
-                            <span class="badge bg-primary">${coach.status || 'online'}</span>
+                            <span class="inline-block px-2 py-1 rounded bg-blue-600 text-white text-xs">${coach.status || 'online'}</span>
                         </div>
                     </div>
                 </div>
@@ -137,29 +137,27 @@ async function renderCoachesInModal(gameKey) {
             });
         });
     } catch (err) {
-        coachesList.innerHTML = '<div class="text-danger">Failed to load coaches.</div>';
+        coachesList.innerHTML = '<div class="text-red-600">Failed to load coaches.</div>';
     }
 }
 
 function ensureModalHtml() {
     if (document.getElementById('gameCoachModal')) return;
     const modalHtml = `
-    <div class="modal fade" id="gameCoachModal" tabindex="-1">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content bg-dark">
-                <div class="modal-header border-secondary">
-                    <h5 class="modal-title">Select Game & Coach</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-75" id="gameCoachModal" tabindex="-1">
+        <div class="w-full max-w-5xl mx-auto bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+            <div class="flex flex-col">
+                <div class="flex items-center justify-between border-b border-gray-700 px-6 py-4">
+                    <h5 class="text-lg font-semibold text-white">Select Game & Coach</h5>
+                    <button type="button" class="text-white hover:text-gray-300 p-2 focus:outline-none" onclick="document.getElementById('gameCoachModal').classList.add('hidden')">&times;</button>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="row g-0">
-                        <div class="col-md-4 border-end border-secondary">
-                            <div class="list-group list-group-flush" id="gamesList"></div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="p-4">
-                                <div class="row g-4" id="coachesList"></div>
-                            </div>
+                <div class="flex flex-row">
+                    <div class="w-full md:w-1/3 border-r border-gray-700 bg-gray-800 min-h-[400px]">
+                        <div class="flex flex-col" id="gamesList"></div>
+                    </div>
+                    <div class="w-full md:w-2/3 bg-gray-900">
+                        <div class="p-6">
+                            <div class="flex flex-wrap -mx-2" id="coachesList"></div>
                         </div>
                     </div>
                 </div>
@@ -173,20 +171,20 @@ export function showCoachSelectorModal() {
     ensureModalHtml();
     renderGamesList();
     const gamesList = document.getElementById('gamesList');
+    const coachModal = document.getElementById('gameCoachModal');
     if (gamesList) {
-        let activeBtn = gamesList.querySelector('.list-group-item.active');
+        let activeBtn = gamesList.querySelector('button.bg-blue-600');
         let initialGame = activeBtn ? activeBtn.getAttribute('data-game') : null;
         renderCoachesInModal(initialGame);
         gamesList.addEventListener('click', e => {
-            const btn = e.target.closest('.list-group-item');
+            const btn = e.target.closest('button[data-game]');
             if (!btn) return;
-            gamesList.querySelectorAll('.list-group-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            gamesList.querySelectorAll('button[data-game]').forEach(b => b.classList.remove('bg-blue-600', 'text-white'));
+            btn.classList.add('bg-blue-600', 'text-white');
             renderCoachesInModal(btn.getAttribute('data-game'));
         }, { once: true });
     }
-    const modal = new bootstrap.Modal(document.getElementById('gameCoachModal'));
-    modal.show();
+    coachModal.classList.remove('hidden');
 }
 
 export function initCoachSelectorModal() {
@@ -194,14 +192,14 @@ export function initCoachSelectorModal() {
     renderGamesList();
     const gamesList = document.getElementById('gamesList');
     if (gamesList) {
-        let activeBtn = gamesList.querySelector('.list-group-item.active');
+        let activeBtn = gamesList.querySelector('button.bg-blue-600');
         let initialGame = activeBtn ? activeBtn.getAttribute('data-game') : null;
         renderCoachesInModal(initialGame);
         gamesList.addEventListener('click', e => {
-            const btn = e.target.closest('.list-group-item');
+            const btn = e.target.closest('button[data-game]');
             if (!btn) return;
-            gamesList.querySelectorAll('.list-group-item').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            gamesList.querySelectorAll('button[data-game]').forEach(b => b.classList.remove('bg-blue-600', 'text-white'));
+            btn.classList.add('bg-blue-600', 'text-white');
             renderCoachesInModal(btn.getAttribute('data-game'));
         });
     }

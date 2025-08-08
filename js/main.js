@@ -1,8 +1,8 @@
 // Listen for logout button click (for pages that have it)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', function(e) {
+    logoutBtn.addEventListener('click', function (e) {
       e.preventDefault();
       localStorage.removeItem('authState');
       updateAuthUI();
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 // Listen for login/signup success (optional: use a custom event or poll localStorage)
-window.addEventListener('storage', function(e) {
+window.addEventListener('storage', function (e) {
   if (e.key === 'authState') updateAuthUI();
 });
 // Optionally, expose updateAuthUI globally for other scripts
@@ -21,26 +21,29 @@ import { authService } from './authService.js';
 import { setupCoachSelectorTriggers } from './coachSelector.js';
 import { initAuthGuard } from './authGuard.js';
 
+/*добавить айди в свой*/
 export function updateAuthUI() {
-  const loginBtn = document.getElementById('loginButton');
+  const loginBtn = document.getElementById('loginButton'); //поставить в контейнер с 2 кнопками
   const userDropdown = document.getElementById('userDropdown');
   const usernamePlaceholder = document.getElementById('usernamePlaceholder');
   let adminLink = document.getElementById('adminNavLink');
   const authState = JSON.parse(localStorage.getItem('authState'));
   if (authState && authState.isLoggedIn && authState.user && authState.user.username) {
-    if (loginBtn) loginBtn.classList.add('d-none');
+    if (loginBtn) loginBtn.classList.add('hidden');
     if (userDropdown && usernamePlaceholder) {
-      userDropdown.classList.remove('d-none');
+      userDropdown.classList.remove('hidden');
       usernamePlaceholder.textContent = authState.user.username;
     }
-    if (authState.isAdmin) {
+    if (!authState.isAdmin) {
       if (!adminLink) {
         const nav = document.querySelector('.navbar-nav');
         if (nav) {
-          adminLink = document.createElement('li');
+          adminLink = document.createElement('span');
           adminLink.className = 'nav-item';
           adminLink.id = 'adminNavLink';
-          adminLink.innerHTML = `<a class="nav-link" href="./admin_panel.html"><i class="bi bi-shield-lock"></i> Admin</a>`;
+          adminLink.innerHTML = `<a class="nav-link flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors" href="./admin_panel.html">
+          <i class="fa fa-shield"></i> Admin
+        </a>`;
           nav.appendChild(adminLink);
         }
       }
@@ -48,8 +51,8 @@ export function updateAuthUI() {
       adminLink.remove();
     }
   } else {
-    if (loginBtn) loginBtn.classList.remove('d-none');
-    if (userDropdown) userDropdown.classList.add('d-none');
+    if (loginBtn) loginBtn.classList.remove('hidden');
+    if (userDropdown) userDropdown.classList.add('hidden');
     if (usernamePlaceholder) usernamePlaceholder.textContent = '';
     if (adminLink) adminLink.remove();
   }
@@ -59,7 +62,7 @@ export function setupAuthUIEvents() {
   // Listen for logout
   const logoutBtn = document.getElementById('logoutBtn');
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', function(e) {
+    logoutBtn.addEventListener('click', function (e) {
       e.preventDefault();
       localStorage.removeItem('authState');
       updateAuthUI();
@@ -67,7 +70,7 @@ export function setupAuthUIEvents() {
     });
   }
   // Listen for login/signup success (optional: use a custom event or poll localStorage)
-  window.addEventListener('storage', function(e) {
+  window.addEventListener('storage', function (e) {
     if (e.key === 'authState') updateAuthUI();
   });
   // Optionally, expose updateAuthUI globally for other scripts
@@ -98,6 +101,7 @@ export function showToast(message, success = false) {
   toast.setAttribute('aria-live', 'assertive');
   toast.setAttribute('aria-atomic', 'true');
   toast.style.minWidth = '250px';
+  //написать alert
   toast.innerHTML = `
     <div class="flex">
       <div class="toast-body">
@@ -110,14 +114,14 @@ export function showToast(message, success = false) {
   toastContainer.appendChild(toast);
 
   // Show toast using Bootstrap's Toast API if available
-  if (window.bootstrap && window.bootstrap.Toast) {
+  /*if (window.bootstrap && window.bootstrap.Toast) {
     const bsToast = window.bootstrap.Toast.getOrCreateInstance(toast, { delay: 3000 });
     bsToast.show();
     toast.addEventListener('hidden.bs.toast', () => toast.remove());
   } else {
     // Fallback: auto-remove after 3s
     setTimeout(() => toast.remove(), 3000);
-  }
+  }*/
 }
 
 /**
@@ -128,7 +132,7 @@ async function verifyAuthentication() {
     try {
       // Use loadCoaches as a way to verify the auth status with the server
       const result = await loadCoaches();
-      
+
       // If the response contains an authentication error, the loadCoaches function 
       // will have already handled the logout process
     } catch (error) {
@@ -137,28 +141,28 @@ async function verifyAuthentication() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
   // Make showToast available globally
   window.showToast = showToast;
-  
+
   // Verify authentication with the server if logged in
   await verifyAuthentication();
-  
+
   // Initialize the auth guard
   await initAuthGuard();
-  
+
   // Update UI and setup other components
   updateAuthUI();
   setupAuthUIEvents();
   setupCoachSelectorTriggers();
-  
-  const navbar = document.querySelector('.navbar');
+
+  /*const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-  });
+  });*/
 });
 

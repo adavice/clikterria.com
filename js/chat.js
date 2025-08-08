@@ -35,14 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
     chatInput.insertAdjacentHTML('afterbegin', `
         <div class="media-preview-container flex flex-wrap gap-2 my-2"></div>
     `);
-    
+
     function filterCoachText(text) {
         console.log('filterCoachText');
-    return (text || '')
-        .replace(/#+\s*/g, '')
-        .replace(/\*\*(.*?)\*\*/gs, '$1')
-        .replace(/\*/g, '')
-        .split(/\r?\n/).map(line => line.trim()).join('<br>');
+        return (text || '')
+            .replace(/#+\s*/g, '')
+            .replace(/\*\*(.*?)\*\*/gs, '$1')
+            .replace(/\*/g, '')
+            .split(/\r?\n/).map(line => line.trim()).join('<br>');
     }
 
     async function loadCoachesList() {
@@ -116,9 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error loading coaches:', error);
             chatMessages.innerHTML = `
-                <div class="alert bg-red-100 text-red-700">
-                    Failed to load coaches. Please try refreshing the page.
-                </div>
+            <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3">
+            Failed to load coaches. Please try refreshing the page.
+          </div>
             `;
         }
     }
@@ -147,14 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 storeStatus(coach.id, status);
             }
             return `
-                <div class="coach-item flex items-center gap-3" data-id="${coach.id}" data-status="${status}">
-                    <div class="coach-item-avatar" style="background-image: url('${coach.avatar || DEFAULT_AVATAR}')">
-                    </div>
-                    <div>
-                        <h6 class="mb-0">${coach.name} <div class="coach-status status-${status}"></div></h6>
-                        <small class="text-gray-500">${coach.role}</small>
-                    </div>
-                </div>
+            <div class="coach-item flex items-center gap-3" data-id="${coach.id}" data-status="${status}">
+            <div class="coach-item-avatar" style="background-image: url('${coach.avatar || DEFAULT_AVATAR}')">
+            </div>
+            <div>
+              <h6 class="mb-0 inline-flex items-center">
+                ${coach.name}
+                <div class="coach-status status-${status} ml-2"></div>
+              </h6>
+              <small class="text-gray-500">${coach.role}</small>
+            </div>
+          </div>
             `;
         }).join('');
 
@@ -174,11 +177,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (status === 'responding') {
                 // Show typing indicator with coach name
                 typingIndicator.querySelector('span').textContent = `${coachName} is typing...`;
-                typingIndicator.classList.remove('d-none');
+                typingIndicator.classList.remove('hidden');
             } else {
                 // Hide typing indicator
-                typingIndicator.classList.add('d-none');
-                
+                typingIndicator.classList.add('hidden');
+
                 if (status !== currentStatus || force) {
                     coachItem.dataset.status = status;
                     statusDot.className = `coach-status status-${status}`;
@@ -199,136 +202,136 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Helper to fix mojibake (bad encoding) in loaded chat history
-function fixMojibake(str) {
-    if (!str || typeof str !== 'string') return str;
-    try {
-        // Decode as if misinterpreted as Latin-1 instead of UTF-8 (modern, no deprecated escape)
-        return decodeURIComponent(encodeURIComponent(str));
-    } catch (e) {
-        return str;
-    }
-}
-
-// Helper: Render messages for a specific coachId into the chatMessages container
-function renderMessagesForCoach(coachId) {
-    chatMessages.innerHTML = '';
-    const coachHistory = chatHistory.get(coachId) || [];
-    let lastDate = null;
-    let lastDateStr = null;
-    coachHistory.forEach((msg, idx) => {
-        // Normalize message fields for UI compatibility
-        const isUser = typeof msg.isUser !== 'undefined' ? msg.isUser : !!msg.user;
-        const isAudio = !!msg.isAudio;
-        const isImage = !!msg.isImage;
-        const content = fixMojibake(msg.content || msg.text || '');
-        // Only use timestamp if present and is a valid number
-        let timestamp = '';
-        if (typeof msg.timestamp !== 'undefined' && msg.timestamp !== null && !isNaN(Number(msg.timestamp)) && Number(msg.timestamp) > 0) {
-            timestamp = msg.timestamp;
+    function fixMojibake(str) {
+        if (!str || typeof str !== 'string') return str;
+        try {
+            // Decode as if misinterpreted as Latin-1 instead of UTF-8 (modern, no deprecated escape)
+            return decodeURIComponent(encodeURIComponent(str));
+        } catch (e) {
+            return str;
         }
-        // Insert date separator if date changes
-        let dateToCheck = timestamp ? (Number(timestamp) < 2000000000 ? Number(timestamp) * 1000 : Number(timestamp)) : null;
-        let dateStr = '';
-        if (dateToCheck) {
-            const msgDate = new Date(dateToCheck);
-            const today = new Date();
-            const yesterday = new Date();
-            msgDate.setHours(0,0,0,0);
-            today.setHours(0,0,0,0);
-            yesterday.setDate(today.getDate() - 1);
-            yesterday.setHours(0,0,0,0);
-            if (!lastDate || msgDate.getTime() !== lastDate.getTime()) {
-                if (msgDate.getTime() === today.getTime()) {
-                    dateStr = 'Today';
-                } else if (msgDate.getTime() === yesterday.getTime()) {
-                    dateStr = 'Yesterday';
-                } else {
-                    dateStr = msgDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-                }
-                // Only insert separator if not the very first message, or if the first message is not today
-                if (idx === 0 || dateStr !== lastDateStr) {
-                    const sep = document.createElement('div');
-                    sep.className = 'chat-date-separator text-center text-gray-500 my-2';
-                    sep.textContent = dateStr;
-                    chatMessages.appendChild(sep);
-                    lastDate = new Date(msgDate.getTime());
-                    lastDateStr = dateStr;
+    }
+
+    // Helper: Render messages for a specific coachId into the chatMessages container
+    function renderMessagesForCoach(coachId) {
+        chatMessages.innerHTML = '';
+        const coachHistory = chatHistory.get(coachId) || [];
+        let lastDate = null;
+        let lastDateStr = null;
+        coachHistory.forEach((msg, idx) => {
+            // Normalize message fields for UI compatibility
+            const isUser = typeof msg.isUser !== 'undefined' ? msg.isUser : !!msg.user;
+            const isAudio = !!msg.isAudio;
+            const isImage = !!msg.isImage;
+            const content = fixMojibake(msg.content || msg.text || '');
+            // Only use timestamp if present and is a valid number
+            let timestamp = '';
+            if (typeof msg.timestamp !== 'undefined' && msg.timestamp !== null && !isNaN(Number(msg.timestamp)) && Number(msg.timestamp) > 0) {
+                timestamp = msg.timestamp;
+            }
+            // Insert date separator if date changes
+            let dateToCheck = timestamp ? (Number(timestamp) < 2000000000 ? Number(timestamp) * 1000 : Number(timestamp)) : null;
+            let dateStr = '';
+            if (dateToCheck) {
+                const msgDate = new Date(dateToCheck);
+                const today = new Date();
+                const yesterday = new Date();
+                msgDate.setHours(0, 0, 0, 0);
+                today.setHours(0, 0, 0, 0);
+                yesterday.setDate(today.getDate() - 1);
+                yesterday.setHours(0, 0, 0, 0);
+                if (!lastDate || msgDate.getTime() !== lastDate.getTime()) {
+                    if (msgDate.getTime() === today.getTime()) {
+                        dateStr = 'Today';
+                    } else if (msgDate.getTime() === yesterday.getTime()) {
+                        dateStr = 'Yesterday';
+                    } else {
+                        dateStr = msgDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+                    }
+                    // Only insert separator if not the very first message, or if the first message is not today
+                    if (idx === 0 || dateStr !== lastDateStr) {
+                        const sep = document.createElement('div');
+                        sep.className = 'chat-date-separator text-center text-gray-500 my-2';
+                        sep.textContent = dateStr;
+                        chatMessages.appendChild(sep);
+                        lastDate = new Date(msgDate.getTime());
+                        lastDateStr = dateStr;
+                    }
                 }
             }
-        }
-        addMessage(content, isUser, isAudio, isImage, timestamp, false);
-    });
-}
-
-// Modified handleTextMessage to only update DOM if user is still on the same coach
-async function handleTextMessage(message, coachId, originalStatus) {
-    const targetCoachId = coachId;
-
-    // Save user message to the correct chat history
-    if (!chatHistory.has(targetCoachId)) chatHistory.set(targetCoachId, []);
-    chatHistory.get(targetCoachId).push({
-        content: message,
-        isUser: true,
-        timestamp: Date.now()
-    });
-    // No need to save chat history, server handles it
-
-    // Only render if user is still on this coach
-    if (activeCoachId === targetCoachId) {
-        addMessage(message, true);
+            addMessage(content, isUser, isAudio, isImage, timestamp, false);
+        });
     }
 
-    try {
-        if (originalStatus === 'online' && activeCoachId === targetCoachId) {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            setCoachStatus(targetCoachId, 'responding');
-        }
+    // Modified handleTextMessage to only update DOM if user is still on the same coach
+    async function handleTextMessage(message, coachId, originalStatus) {
+        const targetCoachId = coachId;
 
-        const initialDelay = getResponseDelay(originalStatus);
-        await new Promise(resolve => setTimeout(resolve, initialDelay));
-
-        const reply = await sendToServer(message, targetCoachId);
-
-        // Save coach reply to the correct chat history
+        // Save user message to the correct chat history
+        if (!chatHistory.has(targetCoachId)) chatHistory.set(targetCoachId, []);
         chatHistory.get(targetCoachId).push({
-            content: reply,
-            isUser: false,
+            content: message,
+            isUser: true,
             timestamp: Date.now()
         });
         // No need to save chat history, server handles it
 
         // Only render if user is still on this coach
         if (activeCoachId === targetCoachId) {
-            const typingDelay = calculateTypingDelay(reply);
-            await new Promise(resolve => setTimeout(resolve, typingDelay));
-            addMessage(reply, false);
-            setCoachStatus(targetCoachId, 'online');
+            addMessage(message, true);
         }
-        // If not, do not update DOM. When user switches back, renderMessagesForCoach will show all messages.
-    } catch (error) {
-        chatHistory.get(targetCoachId).push({
-            content: `
-                <div class="alert bg-red-100 text-red-700 mb-0">
-                    <i class="bi bi-exclamation-triangle me-2"></i>
+
+        try {
+            if (originalStatus === 'online' && activeCoachId === targetCoachId) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                setCoachStatus(targetCoachId, 'responding');
+            }
+
+            const initialDelay = getResponseDelay(originalStatus);
+            await new Promise(resolve => setTimeout(resolve, initialDelay));
+
+            const reply = await sendToServer(message, targetCoachId);
+
+            // Save coach reply to the correct chat history
+            chatHistory.get(targetCoachId).push({
+                content: reply,
+                isUser: false,
+                timestamp: Date.now()
+            });
+            // No need to save chat history, server handles it
+
+            // Only render if user is still on this coach
+            if (activeCoachId === targetCoachId) {
+                const typingDelay = calculateTypingDelay(reply);
+                await new Promise(resolve => setTimeout(resolve, typingDelay));
+                addMessage(reply, false);
+                setCoachStatus(targetCoachId, 'online');
+            }
+            // If not, do not update DOM. When user switches back, renderMessagesForCoach will show all messages.
+        } catch (error) {
+            chatHistory.get(targetCoachId).push({
+                content: `
+                <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3 mb-0">
+                    <i class="fa fa-exclamation-triangle mr-2 text-red-600"></i>
                     ${error.message}
                 </div>
             `,
-            isUser: false,
-            timestamp: Date.now()
-        });
-        // No need to save chat history, server handles it
+                isUser: false,
+                timestamp: Date.now()
+            });
+            // No need to save chat history, server handles it
 
-        if (activeCoachId === targetCoachId) {
-            addMessage(`
-                <div class="alert bg-red-100 text-red-700 mb-0">
-                    <i class="bi bi-exclamation-triangle me-2"></i>
+            if (activeCoachId === targetCoachId) {
+                addMessage(`
+                <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3 mb-0">
+                    <i class="fa fa-exclamation-triangle mr-2 text-red-600"></i>
                     ${error.message}
                 </div>
             `, false);
-            setCoachStatus(targetCoachId, originalStatus);
+                setCoachStatus(targetCoachId, originalStatus);
+            }
         }
     }
-}
 
     function selectCoach(coachItem) {
         const newCoachId = coachItem.dataset.id;
@@ -337,10 +340,10 @@ async function handleTextMessage(message, coachId, originalStatus) {
             const messages = Array.from(chatMessages.children).map(msg => {
                 const contentElem = msg.querySelector('.message-content');
                 let content = '';
-                // Detect if this is an image/AI message (array/object) by checking for .ai-markdown or .bi-image
-                if (contentElem && contentElem.querySelector('.bi-image')) {
+                // Detect if this is an image/AI message (array/object) by checking for .ai-markdown or .fa-image
+                if (contentElem && contentElem.querySelector('.fa-image')) {
                     // Image/AI message: store as array/object
-                    const flexGrow = contentElem.querySelector('.flex-grow-1');
+                    const flexGrow = contentElem.querySelector('.flex-grow');
                     if (flexGrow) {
                         // Try to parse as JSON if possible, otherwise fallback to HTML
                         try {
@@ -357,7 +360,7 @@ async function handleTextMessage(message, coachId, originalStatus) {
                     content = audio ? audio.src : '';
                 } else if (contentElem) {
                     // Text message: store plain text
-                    const flexGrow = contentElem.querySelector('.flex-grow-1');
+                    const flexGrow = contentElem.querySelector('.flex-grow');
                     content = flexGrow ? flexGrow.textContent : contentElem.textContent || '';
                 }
                 return {
@@ -370,7 +373,7 @@ async function handleTextMessage(message, coachId, originalStatus) {
             // Save chat history after switching
             // No need to save chat history, server handles it
         }
-        
+
         document.querySelectorAll('.coach-item').forEach(item => item.classList.remove('active'));
         coachItem.classList.add('active');
 
@@ -381,24 +384,24 @@ async function handleTextMessage(message, coachId, originalStatus) {
         const role = coachItem.querySelector('small').textContent;
 
         document.getElementById('chatCoachAvatar').style.backgroundImage = avatar;
-        document.getElementById('chatCoachName').innerHTML = `${name} <div class="coach-status status-${status}"></div>`;
+        document.getElementById('chatCoachName').innerHTML = `${name} <div class="coach-status status-${status} inline-block ml-2"></div>`;
         document.getElementById('chatCoachRole').textContent = role;
-        
+
         // Load chat history for selected coach
         activeCoachId = newCoachId;
         renderMessagesForCoach(newCoachId);
     }
 
-function addMessage(content, isUser = false, isAudio = false, timestamp = Date.now()) {
+    function addMessage(content, isUser = false, isAudio = false, timestamp = Date.now()) {
         const message = document.createElement('div');
         message.className = `message ${isUser ? 'user' : ''}`;
         message.dataset.timestamp = timestamp;
-        
+
         // Add delete button for user messages
         const deleteButton = isUser ? `
-            <button class="btn btn-link btn-sm text-gray-500 delete-message p-0 ms-2" title="Delete message">
-                <i class="bi bi-trash"></i>
-            </button>
+        <button class="delete-message bg-transparent text-gray-500 text-sm p-0 ml-2 hover:underline focus:outline-none" title="Delete message">
+        <i class="fa fa-trash"></i>
+      </button>
         ` : '';
 
         let messageContent = '';
@@ -412,7 +415,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             if (imagePart) {
                 imageHtml = `
                     <div class="image-preview-block mb-2 text-center">
-                        <img src="${imagePart.image_url.url}" class="img-fluid rounded" style="max-height: 200px; cursor: pointer;" onclick="window.open(this.src, '_blank')" alt="Uploaded image">
+                        <img src="${imagePart.image_url.url}" class="rounded mx-auto" style="max-height: 200px; cursor: pointer;" onclick="window.open(this.src, '_blank')" alt="Uploaded image">
                     </div>
                 `;
             }
@@ -431,8 +434,8 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             if (isAudio) {
                 messageContent = `
                     <div class="audio-message-block flex items-center gap-2">
-                        <i class="bi bi-mic-fill text-primary"></i>
-                        <audio src="${content}" controls class="audio-message flex-grow-1"></audio>
+                        <i class="fa fa-microphone text-blue-600"></i>
+                        <audio src="${content}" controls class="audio-message flex-grow"></audio>
                     </div>
                 `;
             } else if (!isUser) {
@@ -451,17 +454,17 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             timeStr = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
         message.innerHTML = `
-            <div class="message-content">
-                <div class="flex items-center justify-content-between">
-                    <div class="flex-grow-1">
-                        ${messageContent}
-                    </div>
-                    ${deleteButton}
-                </div>
-                <div class="message-timestamp text-end text-gray-500" style="font-size: 0.8em; opacity: 0.7; margin-top: 0.25rem;">
-                    ${timeStr}
-                </div>
-            </div>
+        <div class="message-content">
+        <div class="flex items-center justify-between">
+          <div class="flex-grow">
+            ${messageContent}
+          </div>
+          ${deleteButton}
+        </div>
+        <div class="message-timestamp text-right text-gray-500" style="font-size: 0.8em; opacity: 0.7; margin-top: 0.25rem;">
+          ${timeStr}
+        </div>
+      </div>
         `;
 
         // Add delete event listener
@@ -477,10 +480,10 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             const messages = Array.from(chatMessages.children).map(msg => {
                 const contentElem = msg.querySelector('.message-content');
                 let content = '';
-                // Detect if this is an image/AI message (array/object) by checking for .bi-image
-                if (contentElem && contentElem.querySelector('.bi-image')) {
+                // Detect if this is an image/AI message (array/object) by checking for .fa-image
+                if (contentElem && contentElem.querySelector('.fa-image')) {
                     // Image/AI message: store as array/object
-                    const flexGrow = contentElem.querySelector('.flex-grow-1');
+                    const flexGrow = contentElem.querySelector('.flex-grow');
                     if (flexGrow) {
                         try {
                             content = JSON.parse(flexGrow.textContent);
@@ -496,7 +499,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
                     content = audio ? audio.src : '';
                 } else if (contentElem) {
                     // Text message: store plain text
-                    const flexGrow = contentElem.querySelector('.flex-grow-1');
+                    const flexGrow = contentElem.querySelector('.flex-grow');
                     content = flexGrow ? flexGrow.textContent : contentElem.textContent || '';
                 }
                 return {
@@ -551,11 +554,11 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
             }
 
             const data = await response.json();
-            
+
             if (data.error) {
                 throw new Error(data.error);
             }
-            
+
             return data.reply;
         } catch (error) {
             console.error('Error sending message to server:', error);
@@ -584,7 +587,7 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
 
         const activeCoach = document.querySelector('.coach-item.active');
         if (!activeCoach) {
-            addMessage('<div class="text-danger">Please select a coach first</div>', false);
+            addMessage('<div class="text-red-600">Please select a coach first</div>', false);
             return;
         }
 
@@ -661,8 +664,8 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
         } catch (error) {
             chatHistory.get(targetCoachId).push({
                 content: `
-                    <div class="alert bg-red-100 text-red-700 mb-0">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
+                    <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3 mb-0">
+                        <i class="fa fa-exclamation-triangle mr-2 text-red-600"></i>
                         ${error.message}
                     </div>
                 `,
@@ -673,8 +676,8 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
 
             if (activeCoachId === targetCoachId) {
                 addMessage(`
-                    <div class="alert bg-red-100 text-red-700 mb-0">
-                        <i class="bi bi-exclamation-triangle me-2"></i>
+                    <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3 mb-0">
+                        <i class="fa fa-exclamation-triangle mr-2 text-red-600"></i>
                         ${error.message}
                     </div>
                 `, false);
@@ -684,135 +687,130 @@ function addMessage(content, isUser = false, isAudio = false, timestamp = Date.n
     }
 
     async function handleAudioMessage(audioPreview, coachId, originalStatus) {
-    const audio = audioPreview.querySelector('audio');
-    const audioBlob = await fetch(audio.src).then(r => r.blob());
-    
-    try {
-        addMessage(audio.src, true, true);
-        setCoachStatus(coachId, 'responding');
+        const audio = audioPreview.querySelector('audio');
+        const audioBlob = await fetch(audio.src).then(r => r.blob());
 
-        const formData = new FormData();
-        formData.append('action', 'transcribe_audio');
-        formData.append('coach_id', coachId); // Include coach_id so server can process AI response too
-        formData.append('audio', audioBlob);
-
-        const response = await fetch(`${API_BASE_URL}`, {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-
-        if (data.error) {
-            throw new Error(data.error);
-        }
-
-        // Server should return both transcribed text AND AI reply
-        if (data.reply) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            addMessage(data.reply, false);
-        } else if (data.text) {
-            // Fallback: if server only returns transcribed text, show it
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            addMessage(`Transcribed: "${data.text}"`, false);
-        } else {
-            throw new Error('Invalid response from server');
-        }
-        
-        setCoachStatus(coachId, 'online');
-
-    } catch (error) {
-        console.error('Audio processing error:', error);
-        addMessage(`<span class="text-danger">Failed to process audio message: ${error.message}</span>`, false);
-        setCoachStatus(coachId, originalStatus);
-    } finally {
-        audioPreview.remove();
-    }
-}
-
-
-// New: handle image and text together
-async function handleImageMessageWithText(base64Image, userText, coachId, originalStatus) {
-    try {
-        // Compose content array for local chat display
-        const contentArr = [];
-        if (userText) {
-            contentArr.push({ type: 'text', text: userText });
-        }
-        contentArr.push({ type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + base64Image } });
-        addMessage(contentArr, true);
-        setCoachStatus(coachId, 'responding');
-
-        // Convert base64 to blob
-        const byteString = atob(base64Image);
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-        for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        const blob = new Blob([ab], { type: 'image/jpeg' });
-
-        const formData = new FormData();
-        formData.append('action', 'vision');
-        formData.append('image', blob, 'image.jpg');
-        formData.append('coach_id', coachId);
-        formData.append('text', userText);
-
-        const res = await fetch(`${API_BASE_URL}`, {
-            method: 'POST',
-            body: formData
-        });
-
-        if (!res.ok) {
-            throw new Error(`Server returned ${res.status}: ${res.statusText}`);
-        }
-
-        let data;
         try {
-            const text = await res.text();
-            data = JSON.parse(text);
-        } catch (parseError) {
-            console.error('Raw response:', text);
-            throw new Error('Invalid response format from server');
-        }
+            addMessage(audio.src, true, true);
+            setCoachStatus(coachId, 'responding');
 
-        if (data && data.reply) {
-            addMessage(data.reply, false);
-        } else {
-            throw new Error('Missing reply in server response');
+            const formData = new FormData();
+            formData.append('action', 'transcribe_audio');
+            formData.append('coach_id', coachId); // Include coach_id so server can process AI response too
+            formData.append('audio', audioBlob);
+
+            const response = await fetch(`${API_BASE_URL}`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            // Server should return both transcribed text AND AI reply
+            if (data.reply) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                addMessage(data.reply, false);
+            } else if (data.text) {
+                // Fallback: if server only returns transcribed text, show it
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                addMessage(`Transcribed: "${data.text}"`, false);
+            } else {
+                throw new Error('Invalid response from server');
+            }
+
+            setCoachStatus(coachId, 'online');
+
+        } catch (error) {
+            console.error('Audio processing error:', error);
+            addMessage(`<span class="text-red-600">Failed to process audio message: ${error.message}</span>`, false);
+            setCoachStatus(coachId, originalStatus);
+        } finally {
+            audioPreview.remove();
         }
-        setCoachStatus(coachId, 'online');
-    } catch (err) {
-        console.error('Error handling image message:', err);
-        addMessage(`<span class="text-danger">Unable to process image right now. Please try again later.</span>`, false);
-        setCoachStatus(coachId, originalStatus);
     }
-}
+
+
+    // New: handle image and text together
+    async function handleImageMessageWithText(base64Image, userText, coachId, originalStatus) {
+        try {
+            // Compose content array for local chat display
+            const contentArr = [];
+            if (userText) {
+                contentArr.push({ type: 'text', text: userText });
+            }
+            contentArr.push({ type: 'image_url', image_url: { url: 'data:image/jpeg;base64,' + base64Image } });
+            addMessage(contentArr, true);
+            setCoachStatus(coachId, 'responding');
+
+            // Convert base64 to blob
+            const byteString = atob(base64Image);
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            const blob = new Blob([ab], { type: 'image/jpeg' });
+
+            const formData = new FormData();
+            formData.append('action', 'vision');
+            formData.append('image', blob, 'image.jpg');
+            formData.append('coach_id', coachId);
+            formData.append('text', userText);
+
+            const res = await fetch(`${API_BASE_URL}`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!res.ok) {
+                throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+            }
+
+            let data;
+            try {
+                const text = await res.text();
+                data = JSON.parse(text);
+            } catch (parseError) {
+                console.error('Raw response:', text);
+                throw new Error('Invalid response format from server');
+            }
+
+            if (data && data.reply) {
+                addMessage(data.reply, false);
+            } else {
+                throw new Error('Missing reply in server response');
+            }
+            setCoachStatus(coachId, 'online');
+        } catch (err) {
+            console.error('Error handling image message:', err);
+            addMessage(`<span class="text-red-600">Unable to process image right now. Please try again later.</span>`, false);
+            setCoachStatus(coachId, originalStatus);
+        }
+    }
 
     // Toast utility for chat page
     function showToast(message, success = false) {
         let toastContainer = document.querySelector('.toast-container');
         if (!toastContainer) {
             toastContainer = document.createElement('div');
-            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+            toastContainer.className = 'toast-container fixed bottom-0 right-0 p-3 z-50';
             document.body.appendChild(toastContainer);
         }
         let toast = document.createElement('div');
-        toast.className = 'toast show';
+        toast.className = 'rounded-lg px-5 py-3 mb-2 shadow-lg bg-white';
         toast.setAttribute('role', 'alert');
-        toast.setAttribute('data-bs-delay', '3000');
         toast.innerHTML = `
-            <div class="toast-body feature-card border-0">
-                <span>
-                    <div class="flex items-center gap-2">
-                        <i class="bi ${success ? 'bi-check-circle-fill text-success' : 'bi-exclamation-circle-fill text-danger'}"></i>
-                        <span>${message}</span>
-                    </div>
-                </span>
+            <div class="flex items-center gap-2">
+                <i class="fa ${success ? 'fa-check-circle text-green-600' : 'fa-exclamation-circle text-red-600'}"></i>
+                <span>${message}</span>
             </div>
         `;
         toastContainer.appendChild(toast);
@@ -866,17 +864,17 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
     function addMediaPreview(src, type) {
         const previewContainer = document.querySelector('.media-preview-container');
         const existingPreview = previewContainer.querySelector('.media-preview');
-        
+
         if (existingPreview) {
             existingPreview.remove();
         }
 
         const previewHtml = type === 'image' ? `
             <div class="media-preview flex items-center gap-2 my-2">
-                <i class="bi bi-image text-primary"></i>
-                <img src="data:image/jpeg;base64,${src}" class="img-fluid rounded" style="max-height: 100px;">
-                <button class="btn btn-sm btn-outline-danger" onclick="this.closest('.media-preview').remove()">
-                    <i class="bi bi-trash"></i>
+                <i class="fa fa-image text-blue-600"></i>
+                <img src="data:image/jpeg;base64,${src}" class="rounded" style="max-height: 100px;">
+                <button class="delete-message bg-transparent text-red-600 text-sm p-0 ml-2 hover:underline focus:outline-none" onclick="this.closest('.media-preview').remove()">
+                    <i class="fa fa-trash"></i>
                 </button>
             </div>
         ` : '';
@@ -893,7 +891,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
         try {
             audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
             mediaRecorder = new MediaRecorder(audioStream);
-            
+
             mediaRecorder.ondataavailable = e => {
                 audioChunks.push(e.data);
             };
@@ -901,7 +899,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
             mediaRecorder.onstop = async () => {
                 const audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType });
                 const audioUrl = URL.createObjectURL(audioBlob);
-                
+
                 // Add preview to textarea area
                 const chatInput = document.querySelector('.chat-input');
                 const existingPreview = chatInput.querySelector('.audio-preview');
@@ -911,18 +909,18 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
 
                 const previewHtml = `
                     <div class="audio-preview flex items-center gap-2 my-2">
-                        <i class="bi bi-mic-fill text-primary"></i>
-                        <audio src="${audioUrl}" controls class="audio-message flex-grow-1"></audio>
-                        <button class="btn btn-sm btn-outline-danger" onclick="this.closest('.audio-preview').remove()">
-                            <i class="bi bi-trash"></i>
+                        <i class="fa fa-microphone text-blue-600"></i>
+                        <audio src="${audioUrl}" controls class="audio-message flex-grow"></audio>
+                        <button class="delete-message bg-transparent text-red-600 text-sm p-0 ml-2 hover:underline focus:outline-none" onclick="this.closest('.audio-preview').remove()">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 `;
-                
+
                 chatInput.insertAdjacentHTML('afterbegin', previewHtml);
 
                 // Reset recording state
-                audioChunks = []; 
+                audioChunks = [];
             };
 
             // Start recording immediately after getting permission
@@ -930,8 +928,8 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
             mediaRecorder.start();
             isRecording = true;
             const voiceBtn = document.getElementById('voiceBtn');
-            voiceBtn.classList.add('text-danger');
-            voiceBtn.querySelector('i').classList.replace('bi-mic-fill', 'bi-stop-fill');
+            voiceBtn.classList.add('text-red-600');
+            voiceBtn.querySelector('i').classList.replace('fa-microphone', 'fa-stop');
 
         } catch (err) {
             console.error('Error accessing microphone:', err);
@@ -954,15 +952,15 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
             // Stop recording
             mediaRecorder.stop();
             isRecording = false;
-            voiceBtn.classList.remove('text-danger');
-            voiceBtn.querySelector('i').classList.replace('bi-stop-fill', 'bi-mic-fill');
+            voiceBtn.classList.remove('text-red-600');
+            voiceBtn.querySelector('i').classList.replace('fa-stop', 'fa-microphone');
         } else {
             // Start another recording
             audioChunks = [];
             mediaRecorder.start();
             isRecording = true;
-            voiceBtn.classList.add('text-danger');
-            voiceBtn.querySelector('i').classList.replace('bi-mic-fill', 'bi-stop-fill');
+            voiceBtn.classList.add('text-red-600');
+            voiceBtn.querySelector('i').classList.replace('fa-microphone', 'fa-stop');
         }
     });
 
@@ -972,7 +970,7 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
         const chatPanel = document.querySelector('.chat-window-panel');
         if (coachListPanel && chatPanel) {
             coachListPanel.style.display = 'none';
-            chatPanel.classList.add('justify-content-center');
+            chatPanel.classList.add('justify-center');
             chatPanel.classList.add('items-center');
             chatPanel.style.margin = '0 auto';
         }
@@ -984,5 +982,3 @@ async function handleImageMessageWithText(base64Image, userText, coachId, origin
     // Just keep the initial coach list load
     loadCoachesList();
 });
-
-

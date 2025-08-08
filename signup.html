@@ -552,7 +552,7 @@
             class="rounded-lg bg-card text-card-foreground shadow-sm border-0 luxury-shadow"
           >
             <div class="p-8">
-              <form method="post" class="space-y-6">
+              <form method="post" class="form-signup space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label
@@ -579,7 +579,7 @@
                         <circle cx="12" cy="7" r="4"></circle>
                       </svg>
                       <input
-                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 form-control required input form-input"
+                        class="name flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 form-control required input form-input"
                         type="text"
                         id="name"
                         name="name"
@@ -1303,34 +1303,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="js/script.js"></script>
-    <script>
-      $("#form").on("submit", function () {
-        var formData = {
-          name: $("#name").val(),
-          lname: $("#lname").val(),
-          address: $("#address").val(),
-          code: $("#code").val(),
-          city: $("#city").val(),
-          phone: $("#phone").val(),
-        };
-        $("#form").prop("disabled", true);
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "send_form_talk_to_us" });
-        $.ajax({
-          type: "POST",
-          url: "/c/contact_form",
-          data: formData,
-          encode: true,
-          success: function (data) {
-            window.location.replace("./signup2.html");
-          },
-          error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("Something is wrong.");
-          },
-        });
-        return false;
-      });
-    </script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/form.js"></script>
   </body>
 </html>

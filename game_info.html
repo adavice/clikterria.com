@@ -685,35 +685,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/script.js"></script>
-    <script>
-      $('#form').on('submit', function () {
-          var formData = {
-              'name': $('#name').val(),
-              'lname': $('#lname').val(),
-              'address': $('#address').val(),
-              'code': $('#code').val(),
-              'city': $('#city').val(),
-              'phone': $('#phone').val(),
-
-          };
-          $('#form').prop('disabled', true);
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({ 'event': 'send_form_talk_to_us' });
-          $.ajax({
-              type: 'POST',
-              url: '/c/contact_form',
-              data: formData,
-              encode: true,
-              success: function (data) {
-                  window.location.replace("./signup2.html");
-              },
-              error: function (XMLHttpRequest, textStatus, errorThrown) {
-                  alert("Something is wrong.");
-              }
-          });
-          return false;
-      });
-  </script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

@@ -397,8 +397,9 @@
               </div></a
             >
           </div>
-          <div class="flex items-center gap-4">
-            
+          
+          <div class="navbar-nav flex items-center gap-4">
+        
 
             <a
               href="contactus.html"
@@ -441,11 +442,11 @@
               ><span class="hidden sm:inline">Cancel Subscription</span>
             </a>
 
-            <div
-              class="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
+            <div 
+              class="md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
             >
               <a
-                href="login.html"
+                href="login.html" id="loginButton"
                 class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:text-accent-foreground h-10 px-4 py-2 hover:bg-white/20 transition-all duration-300"
               >
                 Login</a
@@ -457,7 +458,36 @@
                 Sign Up
               </a>
             </div>
+            <div class="hidden relative inline-block text-left group" id="userDropdown">
+              <a href="#"
+                class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                <span class="ml-2" id="usernamePlaceholder">user_name</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
 
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#" id="logoutBtn"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  ><i class="fas fa-sign-out"></i>&nbsp;Logout</a
+                >
+              </div>
+            </div>
             <div class="relative inline-block text-left group hidden">
               <a
                 class="flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
@@ -857,7 +887,7 @@
                   >
                     🌟 Premium Membership – Maximize Your Progress
                   </div>
-                  <div class="text-4xl font-bold mb-2">€38.95/month</div>
+                  <div class="text-4xl font-bold mb-2">€40/month</div>
                   <p class="text-indigo-100">🚀 Includes 3-day free trial</p>
                 </div>
                 <div class="space-y-4 mb-8">
@@ -1059,7 +1089,7 @@
                   class="text-gray-300 hover:text-white transition-colors"
                   >Refund Policy</a
                 >
-              </li>                         
+              </li>              
               <li>
                 <a
                   href="faq.html"
@@ -1097,9 +1127,7 @@
         </div>
       </div>
     </footer>
-
-    <script src="js/script.js"></script>
-    <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/form.js"></script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

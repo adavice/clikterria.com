@@ -661,7 +661,7 @@
                 with our interactive chat.
               </p>
               <a
-                class="chat-trigger inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 rounded-md px-8 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
+                class="coachingNavLink inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 rounded-md px-8 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1482,7 +1482,7 @@
                   to begin your training.
                 </p>
                 <a
-                  class="chat-trigger inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 rounded-md px-8 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
+                  class="coachingNavLink inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-11 rounded-md px-8 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
                 >
                   Select a Game<svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1657,8 +1657,20 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/form.js"></script>
+    <script src="./js/script.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module">
+      import { initCoachSelectorModal, showCoachSelectorModal } from './js/coachSelector.js';
+      document.addEventListener('DOMContentLoaded', function() {
+        initCoachSelectorModal();
+        const coachingLink = document.querySelector('coachingNavLink');
+        if (coachingLink) {
+          coachingLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCoachSelectorModal();
+          });
+        }
+      });
+    </script>
   </body>
 </html>

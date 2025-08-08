@@ -151,7 +151,7 @@ function handleDeleteCoach() {
   document.getElementById('confirmDelete').textContent = 'Delete';
   document.getElementById('confirmDelete').classList.remove('btn-primary');
   document.getElementById('confirmDelete').classList.add('btn-danger');
-  document.getElementById('discardChanges').classList.add('d-none');
+  document.getElementById('discardChanges').classList.add('hidden');
   document.querySelector('#confirmModal .modal-title').textContent = 'Delete Confirmation';
   modal.show();
 }
@@ -255,7 +255,7 @@ function checkUnsavedChanges(callback) {
       document.getElementById('confirmDelete').textContent = 'Save';
       document.getElementById('confirmDelete').classList.remove('btn-danger');
       document.getElementById('confirmDelete').classList.add('btn-primary');
-      document.getElementById('discardChanges').classList.remove('d-none');
+      document.getElementById('discardChanges').classList.remove('hidden');
       document.querySelector('#confirmModal .modal-title').textContent = 'Unsaved Changes';
       modal.show();
   } else {
@@ -335,9 +335,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error loading coaches:', error);
         document.querySelector('.chatbot-list').innerHTML = `
-            <div class="alert bg-red-100 text-red-700">
-                Failed to load coaches. Please try refreshing the page.
-            </div>
+        <div class="rounded-lg bg-red-100 text-red-700 px-4 py-3">
+        Failed to load coaches. Please try refreshing the page.
+      </div>
         `;
     }
 

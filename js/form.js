@@ -39,6 +39,7 @@ function showToast(message, success = false) {
   toast.setAttribute('aria-live', 'assertive');
   toast.setAttribute('aria-atomic', 'true');
   toast.style.minWidth = '250px';
+
   toast.innerHTML = `
     <div class="flex">
       <div class="toast-body">
@@ -51,14 +52,14 @@ function showToast(message, success = false) {
   toastContainer.appendChild(toast);
 
   // Show toast using Bootstrap's Toast API if available
-  if (window.bootstrap && window.bootstrap.Toast) {
+  /*if (window.bootstrap && window.bootstrap.Toast) {
     const bsToast = window.bootstrap.Toast.getOrCreateInstance(toast, { delay: 3000 });
     bsToast.show();
     toast.addEventListener('hidden.bs.toast', () => toast.remove());
   } else {
     // Fallback: auto-remove after 3s
     setTimeout(() => toast.remove(), 3000);
-  }
+  }*/
 }
 
 function updateAuthUI() {
@@ -69,7 +70,7 @@ function updateAuthUI() {
 
 document.addEventListener('DOMContentLoaded', function () {
   // --- Form Flip Logic ---
-  document.querySelectorAll('.flip-trigger').forEach(trigger => {
+  /*document.querySelectorAll('.flip-trigger').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       document.querySelector('.auth-flipper').classList.toggle('flipped');
@@ -95,10 +96,11 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.auth-form.forgot').style.display = 'none';
       document.querySelector('.auth-form.back').style.display = '';
     });
-  });
+  });*/
 
   // --- Password Visibility Toggle ---
-  document.querySelectorAll('.password-toggle').forEach(toggle => {
+
+  /*document.querySelectorAll('.password-toggle').forEach(toggle => {
     toggle.addEventListener('click', function() {
       const input = this.parentElement.querySelector('input.password');
       const icon = this.querySelector('i');
@@ -107,86 +109,86 @@ document.addEventListener('DOMContentLoaded', function () {
       icon.classList.toggle('bi-eye');
       icon.classList.toggle('bi-eye-slash');
     });
-  });
+  });*/
 
   // --- Login Form Handler ---
-  const loginForm = document.querySelector('.auth-form.front form');
+  const loginForm = document.querySelector('form.login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       // Get and normalize the contact input (works for both phone or email)
-      const contactInput = form.querySelector('input[type="phone"]').value;
+      const contactInput = form.querySelector('input[type="email"]').value;
       const normalizedContact = normalizeContactInput(contactInput);
       const password = form.querySelector('input.password').value;
       try {
         const response = await login(normalizedContact, password);
         if (response.status === 'ok') {
           form.reset();
-          showToast('Login successful!', true);
+          alert('Login successful!');
           authService.login(response.user);
           updateAuthUI();
         } else if (response.error) {
-          showToast(response.error);
+          alert(response.error);
         } else {
-          showToast('Login failed');
+          alert('Login failed');
         }
       } catch (error) {
-        showToast(error.message);
+        alert(error.message);
       }
     });
   }
 
   // --- Signup Form Handler ---
-  const signupForm = document.querySelector('.auth-form.back form');
+  const signupForm = document.querySelector('form.form-signup');
   if (signupForm) {
     signupForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
-      const username = form.querySelector('input[type="text"]').value;
+      const username = form.querySelector('input.name').value;
       // Get and normalize the contact input (works for both phone or email)
-      const contactInput = form.querySelector('input[type="phone"]').value;
+      const contactInput = form.querySelector('input[type="email"]').value;
       const normalizedContact = normalizeContactInput(contactInput);
-      const password = form.querySelectorAll('.signup-password.password')[0].value;
+      /*const password = form.querySelectorAll('.signup-password.password')[0].value;
       const confirmPassword = form.querySelectorAll('.signup-password.password')[1].value;
       if (password !== confirmPassword) {
-        showToast('Passwords do not match');
+        alert('Passwords do not match');
         return;
-      }
+      }*/
       try {
-        const response = await signup(username, normalizedContact, password);
+        const response = await signup(username, normalizedContact);
         if (response.status === 'ok') {
           form.reset();
-          showToast('Account created successfully! Please login.', true);
-          document.querySelector('.auth-flipper').classList.remove('flipped');
+          alert('Account created successfully! Please login.');
+          //document.querySelector('.auth-flipper').classList.remove('flipped');
           setTimeout(updateAuthUI, 500);
         } else {
           throw new Error(response.error || 'Registration failed');
         }
       } catch (error) {
-        showToast(error.message);
+        alert(error.message);
       }
     });
   }
 
   // --- Forgot Password Form Handler ---
-  document.querySelectorAll('.auth-form.forgot form').forEach(form => {
+  document.querySelectorAll('form.forgot-form').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       // Get and normalize the contact input (works for both phone or email)
-      const contactInput = form.querySelector('input[type="phone"]').value;
+      const contactInput = form.querySelector('input[type="email"]').value;
       const normalizedContact = normalizeContactInput(contactInput);
       try {
         const response = await forgotPassword(normalizedContact);
         if (response.status === 'ok') {
           form.reset();
-          showToast('Password reset link has been sent.', true);
-          document.querySelector('.auth-flipper').classList.remove('flipped');
+          alert('Password reset link has been sent.');
+          //document.querySelector('.auth-flipper').classList.remove('flipped');
         } else {
           throw new Error(response.error || 'Failed to send reset link');
         }
       } catch (error) {
-        showToast(error.message);
+        alert(error.message);
       }
     });
   });
