@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://clickterria.com/server/chat_api";
+export const API_BASE_URL = "https://clikterria.com/server/chat_api";
