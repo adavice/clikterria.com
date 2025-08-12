@@ -1656,21 +1656,6 @@
         </div>
       </div>
     </footer>
-
-    <script src="./js/script.js"></script>
-    <script type="module" src="./js/main.js"></script>
-    <script type="module">
-      import { initCoachSelectorModal, showCoachSelectorModal } from './js/coachSelector.js';
-      document.addEventListener('DOMContentLoaded', function() {
-        initCoachSelectorModal();
-        const coachingLink = document.querySelector('coachingNavLink');
-        if (coachingLink) {
-          coachingLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showCoachSelectorModal();
-          });
-        }
-      });
-    </script>
+    <script src="../js/script.js"></script>
   </body>
 </html>
