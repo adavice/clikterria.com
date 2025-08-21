@@ -319,6 +319,34 @@
                 Sign Up
               </a>
             </div>
+            <div style="display: none;" class="w-full relative inline-block text-left group pt-5">
+              <a
+                class="cursor-pointer flex items-center justify-between px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                <span class="ml-2 user_name">user_name</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+              <div
+                class="absolute w-full right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#"
+                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Log out</a>
+              </div>
+            </div>
           </div>
         </nav>
       </div>
@@ -390,8 +418,9 @@
               </div></a
             >
           </div>
-          <div class="flex items-center gap-4">
-            
+          
+          <div class="navbar-nav flex items-center gap-4">
+        
 
             <a
               href="contactus.html"
@@ -435,7 +464,7 @@
             </a>
 
             <div
-              class="hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
+              class="menu-button hidden md:flex items-center gap-2 ml-2 pl-2 border-l border-white/20"
             >
               <a
                 href="login.html"
@@ -449,6 +478,35 @@
               >
                 Sign Up
               </a>
+            </div>
+
+            <div style="display: none;" class="relative inline-block text-left group">
+              <a
+                class="cursor-pointer flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+              >
+                <span class="ml-2 user_name">user_name</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </a>
+              <div
+                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+              >
+                <a
+                  href="#"
+                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >Log out</a>
+              </div>
             </div>
 
             <div class="relative inline-block text-left group hidden">
@@ -500,6 +558,7 @@
         </div>
       </div>
     </header>
+
     <main class="pt-16 min-h-screen">
       <div class="min-h-screen py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
