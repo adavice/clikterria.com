@@ -36,3 +36,38 @@ document.querySelectorAll('.toggle-section').forEach(section => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const trigger1 = document.querySelector(".trigger1");
+    const dropdown1 = document.querySelector(".dropdown1");
+    const trigger2 = document.querySelector(".trigger2");
+    const dropdown2 = document.querySelector(".dropdown2");
+
+    trigger1.addEventListener("click", (e) => {
+        e.preventDefault();
+        dropdown1.classList.toggle("opacity-0");
+        dropdown1.classList.toggle("invisible");
+        dropdown1.classList.toggle("opacity-100");
+        dropdown1.classList.toggle("visible");
+    });
+
+    trigger2.addEventListener("click", (e) => {
+        e.preventDefault();
+        dropdown2.classList.toggle("opacity-0");
+        dropdown2.classList.toggle("invisible");
+        dropdown2.classList.toggle("opacity-100");
+        dropdown2.classList.toggle("visible");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!trigger1.parentElement.contains(e.target)) {
+            dropdown1.classList.add("opacity-0", "invisible");
+            dropdown1.classList.remove("opacity-100", "visible");
+        }
+
+        if (!trigger2.parentElement.contains(e.target)) {
+            dropdown2.classList.add("opacity-0", "invisible");
+            dropdown2.classList.remove("opacity-100", "visible");
+        }
+    });
+});

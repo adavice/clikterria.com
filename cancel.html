@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cancel Membership</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.svg" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="src/output.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -321,7 +321,7 @@
             </div>
             <div style="display: none;" class="w-full relative inline-block text-left group pt-5">
               <a
-                class="cursor-pointer flex items-center justify-between px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+                class="trigger2 cursor-pointer flex items-center justify-between px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
               >
                 <span class="ml-2 user_name">user_name</span>
                 <svg
@@ -339,11 +339,11 @@
                 </svg>
               </a>
               <div
-                class="absolute w-full right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+                class="dropdown2 absolute w-full right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
               >
                 <a
                   href="#"
-                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700"
                   >Log out</a>
               </div>
             </div>
@@ -482,7 +482,7 @@
 
             <div style="display: none;" class="relative inline-block text-left group">
               <a
-                class="cursor-pointer flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
+                class="trigger1 cursor-pointer flex items-center px-4 py-2 border rounded text-sm font-medium text-gray-700 border-indigo-200 hover:bg-gray-100"
               >
                 <span class="ml-2 user_name">user_name</span>
                 <svg
@@ -500,11 +500,11 @@
                 </svg>
               </a>
               <div
-                class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
+                class="dropdown1 absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-150 z-10"
               >
                 <a
                   href="#"
-                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  class="cursor-pointer block px-4 py-2 text-sm text-gray-700"
                   >Log out</a>
               </div>
             </div>
