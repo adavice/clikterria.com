@@ -263,3 +263,8 @@ input[type="checkbox"]{
   visibility: visible;
   opacity: 1;
 }
+
+/*new styles*/
+.border-input {
+  border-color: hsl(240 6% 90%);
+}
