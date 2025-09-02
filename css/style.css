@@ -268,3 +268,7 @@ input[type="checkbox"]{
 .border-input {
   border-color: hsl(240 6% 90%);
 }
+
+.list-disc{
+  list-style-type: disc;
+}
